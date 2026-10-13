@@ -69,7 +69,7 @@
     return s.toLowerCase().replace(/[ąčęėįšųūž]/g, (c) => map[c]).replace(/[^a-z0-9-]+/g, "-").replace(/^-+|-+$/g, "");
   }
 
-  function pageUrl(p) { return `${location.origin}/${p.slug}`; }
+  function pageUrl(p) { return `${location.origin}${App.path(p.slug)}`; }
 
   // ---------- render ----------
   function render() {
@@ -176,7 +176,7 @@
         ${dup ? `<p class="adm__warn">Another page already uses this slug.</p>` : ""}
         <div class="adm__link"><code id="adm-url">${esc(pageUrl(p))}</code>
           <button type="button" data-act="copy-url">Copy</button>
-          <a href="/${esc(p.slug)}" data-link>Open</a></div>
+          <a href="${App.path(esc(p.slug))}" data-link>Open</a></div>
         <label class="adm__check"><input type="checkbox" data-hidden ${p.hidden ? "checked" : ""}>
           <span><b>Only via link</b> — hide from the menu and search engines</span></label>
         ${field("Intro", `${base}.intro`, { area: true, rows: 3 })}
@@ -234,11 +234,11 @@
       if (t.dataset.slug) {
         v = slugify(v);
         const url = panel.querySelector("#adm-url");
-        if (url) url.textContent = `${location.origin}/${v}`;
+        if (url) url.textContent = `${location.origin}${App.path(v)}`;
       }
       const viewing = pages()[pageIdx] === current();
       setPath(t.dataset.bind, v);
-      if (t.dataset.slug && viewing) history.replaceState(null, "", `/${v}`);
+      if (t.dataset.slug && viewing) history.replaceState(null, "", App.path(v));
       if (/^pages\.\d+\.title$/.test(t.dataset.bind)) {
         const btn = panel.querySelector(`[data-page="${pageIdx}"]`);
         if (btn) btn.textContent = (v || "(untitled)") + (pages()[pageIdx].hidden ? " ◌" : "");

@@ -5,6 +5,8 @@
   const app = document.getElementById("app");
   const nav = document.getElementById("nav");
   const robots = document.getElementById("meta-robots");
+  const BASE_PATH = new URL(document.baseURI).pathname.replace(/\/?$/, "/");
+  const sitePath = (slug = "") => `${BASE_PATH}${slug}`;
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const paras = (txt) => String(txt || "").split(/\n\s*\n/).map((p) => `<p>${esc(p).replace(/\n/g, "<br>")}</p>`).join("");
 
@@ -28,7 +30,9 @@
   }
 
   function slugFromPath() {
-    return decodeURIComponent(location.pathname).replace(/^\/+|\/+$/g, "").toLowerCase();
+    const pathname = decodeURIComponent(location.pathname);
+    const relativePath = pathname.startsWith(BASE_PATH) ? pathname.slice(BASE_PATH.length) : pathname;
+    return relativePath.replace(/^\/+|\/+$/g, "").toLowerCase();
   }
 
   function applyDesign() {
@@ -85,7 +89,7 @@
     const { site, pages } = Store.data;
     const links = pages
       .filter((p) => !p.hidden)
-      .map((p) => `<a href="/${esc(p.slug)}" data-link class="${p.slug === current ? "is-current" : ""}">${esc(p.title)}</a>`)
+      .map((p) => `<a href="${sitePath(esc(p.slug))}" data-link class="${p.slug === current ? "is-current" : ""}">${esc(p.title)}</a>`)
       .join("");
     nav.innerHTML = `<nav class="nav__links">${links}</nav>`;
   }
@@ -97,7 +101,7 @@
 
     if (slug === "admin") {
       Admin.open();
-      history.replaceState(null, "", "/");
+      history.replaceState(null, "", sitePath());
       return renderPage();
     }
 
@@ -111,7 +115,7 @@
         <section class="hero hero--page">
           <p class="hero__kicker">404</p>
           <h1 class="hero__title drip">Nėra</h1>
-          <p class="hero__lede">Tokio puslapio nėra — arba nuoroda pasikeitė. <a href="/" data-link>Į pradžią →</a></p>
+          <p class="hero__lede">Tokio puslapio nėra — arba nuoroda pasikeitė. <a href="${sitePath()}" data-link>Į pradžią →</a></p>
         </section>`;
       return afterRender();
     }
@@ -185,7 +189,7 @@
     }
   });
 
-  window.App = { go, render: renderPage, slug: slugFromPath };
+  window.App = { go, render: renderPage, slug: slugFromPath, path: sitePath };
 
   document.addEventListener("DOMContentLoaded", () => {
     applyDesign();
