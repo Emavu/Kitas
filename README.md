@@ -1,5 +1,5 @@
 # Kitas
 
-Static portfolio deployed to GitHub Pages. Pushing to `main` runs the workflow in `.github/workflows/pages.yml`.
+Static portfolio prepared for GitHub Pages. The `gh-pages` branch contains the built site at its root, including a `404.html` fallback for client-side routes; the source ZIP and unrelated hosting configuration are excluded.
 
-The workflow publishes the site from `index.html`, `css/`, and `js/`, and creates a `404.html` fallback for client-side routes. The source ZIP and hosting configuration files are not included in the published artifact.
+In the repository settings, open **Pages** and select **Deploy from a branch**, branch `gh-pages`, folder `/ (root)`. Push future site changes to `main`, then refresh the built files on `gh-pages`.
