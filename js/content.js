@@ -12,18 +12,18 @@ window.SITE_DEFAULTS = {
     ]
   },
   "design": {
-    "particleCount": 4200,
-    "spinSpeed": 0.44,
-    "scrollSpin": 3.7,
+    "particleCount": 1800,
+    "spinSpeed": 0.21,
+    "scrollSpin": 0.6,
     "inflow": 0.75,
-    "arms": 6,
-    "twist": 2.6,
-    "particleSize": 1.5,
-    "trail": 0.65,
+    "arms": 3,
+    "twist": 1.4,
+    "particleSize": 1.1,
+    "trail": 0.19,
     "glow": 0.46,
-    "centerX": 0.62,
-    "centerY": 0.36,
-    "radius": 0.6,
+    "centerX": 0.44,
+    "centerY": 0.32,
+    "radius": 0.74,
     "textScale": 0.81,
     "stackRotation": 3,
     "stackSpread": 0,
@@ -31,16 +31,19 @@ window.SITE_DEFAULTS = {
     "gridColumns": 5,
     "nameFont": "sztos-variable",
     "customFont": null,
-    "colorBg": "#050805",
-    "colorInk": "#ecffe0",
-    "colorDim": "#9bb88a",
-    "colorLine": "#26401d",
-    "colorAccent": "#c6ff2e",
-    "colorAccent2": "#ff3cac",
-    "colorName1": "#ecffe0",
-    "colorName2": "#c6ff2e",
-    "particleOuter": "#3dff8b",
-    "particleCore": "#f4ff9e"
+    "colorBg": "#f3f0e8",
+    "colorInk": "#111111",
+    "colorDim": "#55514a",
+    "colorLine": "#cfc8bb",
+    "colorAccent": "#111111",
+    "colorAccent2": "#b3261e",
+    "colorName1": "#111111",
+    "colorName2": "#111111",
+    "particleOuter": "#111111",
+    "particleCore": "#111111",
+    "vortexStyle": "ink",
+    "drips": 0.16,
+    "dripLength": 1.15
   },
   "pages": [
     {
@@ -92,10 +95,10 @@ window.SITE_DEFAULTS = {
             }
           ],
           "box": {
-            "x": 2,
-            "y": 36,
-            "w": 50,
-            "z": 2
+            "x": 34.56,
+            "y": 64.81,
+            "w": 64.09,
+            "z": 3
           }
         },
         {
@@ -103,8 +106,8 @@ window.SITE_DEFAULTS = {
           "heading": "Video",
           "url": "https://www.youtube.com/watch?v=uqn7BQ-ZXBc",
           "box": {
-            "x": 49.94,
-            "y": 90.64,
+            "x": 0.72,
+            "y": 28.08,
             "w": 50,
             "z": 2
           }
@@ -120,8 +123,8 @@ window.SITE_DEFAULTS = {
           "z": 3
         },
         "intro": {
-          "x": 59.19,
-          "y": 43.47,
+          "x": 60.49,
+          "y": 23.76,
           "w": 37.92,
           "z": 3
         }
@@ -130,23 +133,419 @@ window.SITE_DEFAULTS = {
     {
       "slug": "apie",
       "title": "Apie",
-      "hidden": false,
-      "intro": "Trumpai apie autorių, parodas ir bendradarbiavimą.",
+      "hidden": true,
+      "intro": "Sienų tapyba, iliustracija, literatūra ir edukacijos. Naujausi darbai — viršuje.",
       "blocks": [
         {
-          "type": "text",
-          "heading": "Dailininko patirtis",
-          "body": "IŠSILAVINIMAS  \n[ 2017 ]  Vidurinis išsilavinimas \n\tKauno \"Aušros\" gimnazija\t \n[ 2018 ]  Piešimo kursai \n\tPas dailininką Valentiną Varną\t \n[ 2020 ]  Erasmus+ studijos \n\tAkademia Sztuk Pięknych w Gdańsk\t \nLenkija \n[ 2021 ]  Grafinio dizaino profesinis bakalauras \n\tVilniaus technologijų ir dizaino kolegija\t \n[ 2021 ]  Atlikta grafinio dizainerio praktika Kauno menininkų namuose\n\n[ 2021 ]  Intuityvios estetikos seminaras Amres ART\nDAILININKO DARBO PATIRTIS  \n[ 2017 ]  Sienos tapyba interjerui \"Perkūnas\"\nLatvija, Ryga, Dzirnavu iela 27 \n[ 2017 ]  Neofreska \"Driežas\" \nLatvija, Ryga, Dzirnavų iela 27 \n[ 2017 ]  Neofreska \"Ganeša\" \nLatvija, Ryga, Dzirnavų iela 27 \n[ 2018 ]  Neofreska \"Kosminis namelis\" \nKaunas, Taikos pr. 32 \n[ 2019 ]  Piešinio realizavimas ant troleibuso \nKartu su dailininiku Timotiejumi Norvila \nKaunas \n[ 2019 ]  Sienų tapyba interjerui \"Džiunglės\" \n\"Botanist\" kiemelis \nVilnius, Didžioji g. 24 \n[ 2019 ]  Neofreska \"Faith\" \nSienų meno plenerui \"Karosta festival\" \nLatvija, Liepaja, Novembra bulvāris 82/86 \n[ 2019 ]  Sienos tapyba interjerui \"Revolution\" \nKaunas \n[ 2019 ]  Neofreska \"Radium girl\" \nKaunas, Savanorių pr. 91A \n[ 2020 ]  Neofreska \"Ieškok kažko\" \nKaunas, P. Kalpoko g. 19A \n[ 2020 ]  Neofreska \"Tikėjimas\" \ntarptautinis projektas \"Murals for Communities\" \nKaunas, E. Ožeškienės g. 17 B \n[ 2020 ]  Neofreska grafiti meno motyvais \nkartu su dailininku Karoliu Grubiu \nKaunas, J. Vienožinskio g. 59 \n[ 2020 ]  Neofreska \"Progresas yra balansas\" \ngatvės meno šventei \"Sienos atsidaro\"\nKaunas, Kalniečių parkas \n[ 2020 ]  Neofreskos \"miško sodai\" įgyvendinimas \nKartu su dailininikėmis Ieva Voroneckyte, Goda Skėryte \nEskizas Simonos Seibutienės\nKaunas, Partizanų g. 30 \n[ 2020 ]  Neofreska „Gyvybės medis“ \nkartu su dailininikėmis Ieva Voroneckyte ir Goda Skėryte \nneofreska pagal tautodailininkės Odetos Bražėnienės karpinį\nUtena \n\n[ 2020 ]  Neofreska „Gyvybės medis. Obelis“ \nKartu su dailininkėm Ieva Olimpija ir Goda Skėryte \nPagal tautodailininkės Gitos Kolosovienės karpinį ir \nG. Skėrytės eskizą\nRokiškis, Taikos g. 5 \n\n[ 2020 ]  Neofreska \"Saulė šviečia visiems\" \nKartu su dailininke Ieva Voroneckyte \nMarijampolė, R. Juknevičiaus g. 26A \n[ 2021 ]  Gatvės meno kūrinys \"Paminklas laikinumui\" \nKaunas, Aušros takas 2 \n[ 2021 ]  Sienos tapyba interjerui \"Pasakų miesto erdvė\" \nVilkaviškis \n[ 2021 ]  Spalvinė kompozicija ant \"Spaudos ir dizaino namų\" fasado \nKartu su dailininke Ieva Voroneckyte \nMarijampolė, Vytauto g. 48 \n[ 2021 ]  Piešinio realizavimas ant sienos \nVšĮ \"Cukrinukai\" \nMarijampolė \n[ 2021 ]  Piešinio realizavimas ant jūrinio konteinerio \nNuotykių parkas \"77\" \nLaugaliai \n[ 2021 ]  Sienų tapyba interjerui \"185 žvaigždelės\"\nVšį \"Labas noras\" \nŠvenčionių rajonas, Antaviešės g. 1 \n[ 2021 ]  Neofreska \"Žaliakalnio Stumbras\" \nKaunas, Aušros g. 22 \n[ 2022 ]  Neofreska \"Vilkaviškio Vilkas\" \nVilkaviškis, Vytauto g. 28 \n[ 2022 ]  Tapyba interjerui medžio tema\nPlatelių rajonas\n[ 2022 ]  Debesų tapyba ant sienų\nKaunas, Veiverių g. 132\n[ 2022 ]  Neofreska \"Laiptų Kaukas\"\nKartu su dailininke Ieva Voroneckyte \t            \nKaunas, Lietuvių g. 1\n[ 2023 ]  Sienų tapyba Jaunimo centre\nVilkaviškis, Vytauto g. 28 \n[ 2023 ]  Iliustracija \"Ežiukas\" atlikėjo Kigidi Karma dainos viršeliui\nhttps://www.youtube.com/watch?v=j2dkAmq8iC4\n[ 2023 ]  Iliustracija \"Keliaujantis vienuolis\" viešbučiui \"Monk's Bunk\" \nKaunas, Laisvės al. 48-2\n[ 2023 ]  Neofreska Tautodailės salonui \"Marginiai\"\n          Kartu su dailininke Ieva Voroneckyte \n           Klaipėda, Sukilėlių g. 4\n[ 2024 ]  Interjero dekoras restorane \"Teka teka\"\n\t            Prienai, Dariaus ir Girėno g. 1A\n[ 2024 ]  Neofreska \"Vaikystės medis\" \nKartu su dailininke Ieva Voroneckyte \nSintautai, P. Vaičaičio g. 20\n[ 2025 ]  Neofreska \"Basketnews\" biuro interjerui \"Erdvė metimui\" \nKartu su dailininke Ieva Voroneckyte \nKaunas, S. Daukanto g. 23\n[ 2025 ]  Logotipas elektroninės muzikos kūrėjui \"Phrenix\"\n[ 2025]  Neofreska Lietuvos kelių muziejaus fasadui \"Vaikystės gatvių kilimas\" \nKartu su dailininku Timotiejumi Norvila - Morfai bei Dovydu Sabaliausku - Atlikta \nVievis, Kauno g. 14\n[ 2026 ]  Neofreska  \"Žaliakalnio istorijos\"\n          Kartu su dailininke Ieva Voroneckyte \n           Kaunas, Žemaičių g. 117\n\n[ 2026 ]  Neofreska \"Kur visa taps įmanoma\" \nKartu su dailininku Dovydu Sabaliausku - Atlikta \nKaunas, Nepriklausomybės a. 5B\n\n\n\nDALYVAVIMAS PROJEKTUOSE  \n[ 2019 ]  Sienų meno festivalis \"Karosta Festival\" Latvija, Liepaja \n[ 2019 ]  Piešimo pleneras \"Nida, vėjas ir aš\" Nida \n[ 2019 ]  Gatvės meno festivalis \"We Art festival\" Panevėžys \n[ 2020 ]  Tarptautinis projektas \"Murals for communities\" Kaunas \n[ 2020 ]  Gatvės meno renginys \"Sidabrinio amžiaus spalvos\" Alytus\n[ 2020 ]  Gatvės meno festivalis \"Sienos atsidaro\" Kaunas\n[ 2020 ]  Neofreskų serija \"Gyvybės medžiai\" Lietuva \n[ 2022 ]  Kūrybinės dirbtuvės su vaikais Bezdonys\n[ 2023 ]  Kūrybinės dirbtuvės su vaikais Kaunas\n[ 2023 ]  Grafiti piešimo dirbtuvės Joninių šventėje  Kaunas\n[ 2024 ]  Grafiti piešimo dirbtuvės su jaunimu Kaunas\n[ 2024 ]  Grafiti piešimo dirbtuvės \"Švęskime upę\" renginyje Kaunas\n[ 2024 ]  Kūrybinės grafiti dirbtuvės įmonės vasaros festivalyje Bistrampolio dvaras\n[ 2024 ]  Kūrybinės grafiti dirbtuvės įmonės vasaros festivalyje \nSmaragdo slėnis, Vilniaus r. \n[ 2024 ]  Tapybos ant aitvarų dirbtuvės įmonės vasaros festivalyje Vilniaus r.\n[ 2024 ]  Tapybos ant aitvarų dirbtuvės Palomenė, Kaišiadorių r.\n[ 2025 ]  Tapyba Donato Šopio šiuolaikinei interjero baldų serijai \"Nematomi\" Kaunas\n[ 2025 ]  Šiuolaikinio interjero baldų serijos \"Nematomi\" paroda Kaunas, fabrikas \"DROBĖ\"\n[ 2025 ]  Šiuolaikinio interjero baldų serijos \"Nematomi\" paroda Kaunas, \"Akropolis\"\n[ 2026 ]  Grafiti piešimo dirbtuvės \"Švęskime upę\" renginyje Kaunas, Nemuno krantinė\n",
-          "box": {
-            "x": 51.02,
-            "y": 29.44,
-            "w": 44,
-            "z": 2
-          }
+          "type": "timeline",
+          "heading": "Sienų tapyba",
+          "entries": [
+            {
+              "year": "2026",
+              "title": "Neofreska „Kur visa taps įmanoma“",
+              "detail": "Kartu su dailininku Dovydu Sabaliausku-Atlikta\nKaunas, Nepriklausomybės a. 5B"
+            },
+            {
+              "year": "2026",
+              "title": "Neofreska „Žaliakalnio istorijos“",
+              "detail": "Kartu su dailininke Ieva Voroneckyte\nKaunas, Žemaičių g. 117"
+            },
+            {
+              "year": "2025",
+              "title": "Neofreska Lietuvos kelių muziejaus fasadui „Vaikystės gatvių kilimas“",
+              "detail": "Kartu su dailininkais Timotiejumi Norvila-Morfai ir Dovydu Sabaliausku-Atlikta\nVievis, Kauno g. 14"
+            },
+            {
+              "year": "2025",
+              "title": "Neofreska „Basketnews“ biuro interjerui „Erdvė metimui“",
+              "detail": "Kartu su dailininke Ieva Voroneckyte\nKaunas, S. Daukanto g. 23"
+            },
+            {
+              "year": "2024",
+              "title": "Neofreska „Vaikystės medis“",
+              "detail": "Kartu su dailininke Ieva Voroneckyte\nSintautai, P. Vaičaičio g. 20"
+            },
+            {
+              "year": "2024",
+              "title": "Interjero dekoras restorane „Teka teka“",
+              "detail": "Prienai, Dariaus ir Girėno g. 1A"
+            },
+            {
+              "year": "2023",
+              "title": "Neofreska tautodailės salonui „Marginiai“",
+              "detail": "Kartu su dailininke Ieva Voroneckyte\nKlaipėda, Sukilėlių g. 4"
+            },
+            {
+              "year": "2023",
+              "title": "Sienų tapyba Jaunimo centre",
+              "detail": "Vilkaviškis, Vytauto g. 28"
+            },
+            {
+              "year": "2022",
+              "title": "Neofreska „Laiptų Kaukas“",
+              "detail": "Kartu su dailininke Ieva Voroneckyte\nKaunas, Lietuvių g. 1"
+            },
+            {
+              "year": "2022",
+              "title": "Debesų tapyba ant sienų",
+              "detail": "Kaunas, Veiverių g. 132"
+            },
+            {
+              "year": "2022",
+              "title": "Tapyba interjerui medžio tema",
+              "detail": "Platelių rajonas"
+            },
+            {
+              "year": "2022",
+              "title": "Neofreska „Vilkaviškio Vilkas“",
+              "detail": "Vilkaviškis, Vytauto g. 28"
+            },
+            {
+              "year": "2021",
+              "title": "Neofreska „Žaliakalnio Stumbras“",
+              "detail": "Kaunas, Aušros g. 22"
+            },
+            {
+              "year": "2021",
+              "title": "Sienų tapyba interjerui „185 žvaigždelės“",
+              "detail": "VšĮ „Labas noras“\nŠvenčionių rajonas, Antaviešės g. 1"
+            },
+            {
+              "year": "2021",
+              "title": "Piešinys ant jūrinio konteinerio",
+              "detail": "Nuotykių parkas „77“\nLaugaliai"
+            },
+            {
+              "year": "2021",
+              "title": "Piešinys ant sienos",
+              "detail": "VšĮ „Cukrinukai“\nMarijampolė"
+            },
+            {
+              "year": "2021",
+              "title": "Spalvinė kompozicija ant „Spaudos ir dizaino namų“ fasado",
+              "detail": "Kartu su dailininke Ieva Voroneckyte\nMarijampolė, Vytauto g. 48"
+            },
+            {
+              "year": "2021",
+              "title": "Sienų tapyba interjerui „Pasakų miesto erdvė“",
+              "detail": "Vilkaviškis"
+            },
+            {
+              "year": "2021",
+              "title": "Gatvės meno kūrinys „Paminklas laikinumui“",
+              "detail": "Kaunas, Aušros takas 2"
+            },
+            {
+              "year": "2020",
+              "title": "Neofreska „Saulė šviečia visiems“",
+              "detail": "Kartu su dailininke Ieva Voroneckyte\nMarijampolė, R. Juknevičiaus g. 26A"
+            },
+            {
+              "year": "2020",
+              "title": "Neofreskų serija „Gyvybės medžiai“",
+              "detail": "Pagal tautodailininkių karpinius",
+              "items": [
+                {
+                  "year": "2020",
+                  "title": "„Gyvybės medis“",
+                  "detail": "Kartu su dailininkėmis Ieva Voroneckyte ir Goda Skėryte · pagal Odetos Bražėnienės karpinį · Utena"
+                },
+                {
+                  "year": "2020",
+                  "title": "„Gyvybės medis. Obelis“",
+                  "detail": "Kartu su dailininkėmis Ieva Olimpija ir Goda Skėryte · pagal Gitos Kolosovienės karpinį ir G. Skėrytės eskizą · Rokiškis, Taikos g. 5"
+                }
+              ]
+            },
+            {
+              "year": "2020",
+              "title": "Neofreska „Miško sodai“",
+              "detail": "Kartu su dailininkėmis Ieva Voroneckyte ir Goda Skėryte · eskizas Simonos Seibutienės\nKaunas, Partizanų g. 30"
+            },
+            {
+              "year": "2020",
+              "title": "Neofreska „Progresas yra balansas“",
+              "detail": "Gatvės meno festivalis „Sienos atsidaro“\nKaunas, Kalniečių parkas"
+            },
+            {
+              "year": "2020",
+              "title": "Neofreska grafiti meno motyvais",
+              "detail": "Kartu su dailininku Karoliu Grubiu\nKaunas, J. Vienožinskio g. 59"
+            },
+            {
+              "year": "2020",
+              "title": "Neofreska „Tikėjimas“",
+              "detail": "Tarptautinis projektas „Murals for Communities“\nKaunas, E. Ožeškienės g. 17B"
+            },
+            {
+              "year": "2020",
+              "title": "Neofreska „Ieškok kažko“",
+              "detail": "Kaunas, P. Kalpoko g. 19A"
+            },
+            {
+              "year": "2019",
+              "title": "Neofreska „Radium girl“",
+              "detail": "Kaunas, Savanorių pr. 91A"
+            },
+            {
+              "year": "2019",
+              "title": "Sienų tapyba interjerui „Revolution“",
+              "detail": "Kaunas"
+            },
+            {
+              "year": "2019",
+              "title": "Neofreska „Faith“",
+              "detail": "Sienų meno festivalis „Karosta Festival“\nLatvija, Liepoja, Novembra bulvāris 82/86"
+            },
+            {
+              "year": "2019",
+              "title": "Sienų tapyba interjerui „Džiunglės“",
+              "detail": "„Botanist“ kiemelis\nVilnius, Didžioji g. 24"
+            },
+            {
+              "year": "2019",
+              "title": "Piešinys ant troleibuso",
+              "detail": "Kartu su dailininku Timotiejumi Norvila\nKaunas"
+            },
+            {
+              "year": "2018",
+              "title": "Neofreska „Kosminis namelis“",
+              "detail": "Kaunas, Taikos pr. 32"
+            },
+            {
+              "year": "2017",
+              "title": "Trys darbai viename pastate Rygoje",
+              "detail": "Latvija, Ryga, Dzirnavų iela 27",
+              "items": [
+                {
+                  "year": "2017",
+                  "title": "Sienos tapyba interjerui „Perkūnas“",
+                  "detail": ""
+                },
+                {
+                  "year": "2017",
+                  "title": "Neofreska „Driežas“",
+                  "detail": ""
+                },
+                {
+                  "year": "2017",
+                  "title": "Neofreska „Ganeša“",
+                  "detail": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "timeline",
+          "heading": "Iliustracija ir dizainas",
+          "entries": [
+            {
+              "year": "2025",
+              "title": "Logotipas elektroninės muzikos kūrėjui „Phrenix“",
+              "detail": ""
+            },
+            {
+              "year": "2025",
+              "title": "Tapyba Donato Šopio šiuolaikinio interjero baldų serijai „Nematomi“",
+              "detail": "Kaunas",
+              "items": [
+                {
+                  "year": "2025",
+                  "title": "Serijos paroda fabrike „Drobė“",
+                  "detail": "Kaunas"
+                },
+                {
+                  "year": "2025",
+                  "title": "Serijos paroda „Akropolyje“",
+                  "detail": "Kaunas"
+                }
+              ]
+            },
+            {
+              "year": "2023",
+              "title": "Iliustracija „Keliaujantis vienuolis“ viešbučiui „Monk's Bunk“",
+              "detail": "Kaunas, Laisvės al. 48-2"
+            },
+            {
+              "year": "2023",
+              "title": "Iliustracija „Ežiukas“ atlikėjo Kigidi Karma dainos viršeliui",
+              "detail": "https://www.youtube.com/watch?v=j2dkAmq8iC4"
+            }
+          ]
+        },
+        {
+          "type": "timeline",
+          "heading": "Literatūra",
+          "entries": [
+            {
+              "year": "2026",
+              "title": "Eilėraščiai Ilzės Civinskaitės spektaklio „Tu man skolinga“ garso takeliui",
+              "detail": ""
+            },
+            {
+              "year": "2026",
+              "title": "Savos kūrybos poezijos pasirodymas festivalyje „Fluxus“",
+              "detail": "Kaunas"
+            },
+            {
+              "year": "2026",
+              "title": "Kūryba publikuojama elektroniniame literatūros žurnale „Rankos“",
+              "detail": "https://www.rankos.net/"
+            },
+            {
+              "year": "2025–2026",
+              "title": "Knyga „Eglė Žaislų Karalienė“",
+              "detail": "Išleista 2025 m. · pasakos pristatymai ir pasakų kūrimo edukacijos vaikams\nhttps://www.facebook.com/p/Egl%C4%97-%C5%BDaisl%C5%B3-Karalien%C4%97-61584858337753/",
+              "items": [
+                {
+                  "year": "2026",
+                  "title": "Kauno Varpelio pradinė mokykla",
+                  "detail": "1 klasė"
+                },
+                {
+                  "year": "2026",
+                  "title": "Vasaros stovykla „Gentys prie Lašinių piliakalnio“",
+                  "detail": "7–17 metų vaikai"
+                },
+                {
+                  "year": "2026",
+                  "title": "Vasaros stovykla „Naminukai“",
+                  "detail": "7–15 metų vaikai"
+                },
+                {
+                  "year": "2026",
+                  "title": "Kauno Žemųjų Šančių biblioteka",
+                  "detail": "3 klasė"
+                },
+                {
+                  "year": "2026",
+                  "title": "Kauno Ąžuolyno biblioteka",
+                  "detail": "3 klasė"
+                },
+                {
+                  "year": "2026",
+                  "title": "Kauno vaikų ir jaunimo teatras „Vilkolakis“",
+                  "detail": "ikimokyklinio amžiaus vaikai"
+                },
+                {
+                  "year": "2026",
+                  "title": "Kauno Palemono gimnazija",
+                  "detail": "1–4 klasės · 5 užsiėmimai"
+                },
+                {
+                  "year": "2026",
+                  "title": "Aleksoto Dobkevičiaus gimnazija",
+                  "detail": "1–4 ir 7 klasės · 2 užsiėmimai"
+                },
+                {
+                  "year": "2026",
+                  "title": "Kauno Martyno Mažvydo progimnazija",
+                  "detail": "6 klasė"
+                },
+                {
+                  "year": "2026",
+                  "title": "Kauno Karmėlavos Balio Buračo gimnazija",
+                  "detail": "7 klasė"
+                },
+                {
+                  "year": "2026",
+                  "title": "Kauno Erudito licėjus — pasakos kūrimo edukacija",
+                  "detail": "pradinės klasės · 2 užsiėmimai"
+                },
+                {
+                  "year": "2025",
+                  "title": "Žalioji gamtos mokykla, Kaunas — pristatymas ir pasakos kūrimo edukacija",
+                  "detail": "3–8 klasės"
+                }
+              ]
+            },
+            {
+              "year": "2025",
+              "title": "Poezija publikuota Varėnos rajono literatūros almanache „Merkio lieptai“",
+              "detail": ""
+            },
+            {
+              "year": "2025",
+              "title": "Vydūno ištraukų skaitymai trijuose renginiuose",
+              "detail": "",
+              "items": [
+                {
+                  "year": "2025",
+                  "title": "„Vydūnas apie Meilę“ — renginį suorganizavau pats",
+                  "detail": "https://youtu.be/zHB3uOLTNRA · https://kauno.diena.lt/naujienos/laisvalaikis-ir-kultura/kultura/vydunas-apie-meile-1213194"
+                },
+                {
+                  "year": "2025",
+                  "title": "Kasmetinė Vydūno stovykla",
+                  "detail": "Bitėnai"
+                },
+                {
+                  "year": "2025",
+                  "title": "Žolinė Labanoro girioje",
+                  "detail": "https://fb.me/e/5iqJh9THG"
+                }
+              ]
+            },
+            {
+              "year": "2025",
+              "title": "Sutartinių diena Kauno miesto muziejuje",
+              "detail": "Su grupe „Ratas“ — eksperimentinė improvizacija, jungianti sutartines su pasakojimu"
+            },
+            {
+              "year": "2024–2026",
+              "title": "Sutartinių giedojimo renginys „Suburtynė“",
+              "detail": "Savos kūrybos poetiniai pasirodymai · 2024 m. vedžiau šiuolaikinių sutartinių kūrimo dirbtuves"
+            },
+            {
+              "year": "Nuo 2024",
+              "title": "Kūrybinės dirbtuvės „Eilėraštis apie Tave“",
+              "detail": "Užsiėmimų akimirkos ir eilėraščiai — https://www.instagram.com/apie_tave_eilerastis/",
+              "items": [
+                {
+                  "year": "",
+                  "title": "Festivaliai „1000 Saulių“, „Dpoezijos šaltinis“, „Aritmija“",
+                  "detail": ""
+                },
+                {
+                  "year": "",
+                  "title": "Vakaras Vilniuje, Vaidenio svetainėje",
+                  "detail": "https://facebook.com/events/s/eilerastis-apie-tave/1194503605643162/"
+                },
+                {
+                  "year": "",
+                  "title": "Vakaras Kaune, Godo bare",
+                  "detail": "https://facebook.com/events/s/poezija-apie-tave-0322/1462155311836193/"
+                }
+              ]
+            },
+            {
+              "year": "Nuo 2024",
+              "title": "Poezijos vakarai pažįstamų rate",
+              "detail": "Erdvė dalintis kūryba, kalbėtis, improvizuoti · surengta 11 vakarų\nhttps://youtu.be/jO3ThN5oLAI"
+            },
+            {
+              "year": "2023–2026",
+              "title": "Poezija ir proza žurnale „Baltas Kambarys“",
+              "detail": "Slapyvardžiu „Pelkių būtybė“ · http://baltaskambarys.com/",
+              "items": [
+                {
+                  "year": "2023–2024",
+                  "title": "Žurnalo pristatymai",
+                  "detail": "Kaunas (Garage27) ir Marijampolės kultūros centras"
+                }
+              ]
+            },
+            {
+              "year": "2022–2026",
+              "title": "Pasirodymai Kauno „Slemo“ poezijos skaitymuose",
+              "detail": ""
+            }
+          ]
         },
         {
           "type": "stacks",
-          "heading": "Literatūrinė veikla",
+          "heading": "Literatūra — nuotraukos",
           "groups": [],
           "box": {
             "x": 48,
@@ -156,25 +555,243 @@ window.SITE_DEFAULTS = {
           }
         },
         {
-          "type": "text",
-          "heading": "Literatūrinė veikla",
-          "body": "2023 - 2026 Slapyvardžiu Pelkių būtybė poezija bei proza publikuojama kūrybinės klasės žurnale Baltas Kambarys:\nhttp://baltaskambarys.com/\n\n2022 - 2026 Pasirodymai Kauno \"Slemo\" poezijos skaitymuose\n\n2023–2024 m. dalyvavau žurnalo pristatymuose Kaune (Garage27) bei Marijampolėje, Marijampolės kultūros centre, kur dalinausi kūryba.\n\n2024 m. liepą pradėjau vystyti kūrybines dirbtuves Eilėraštis apie Tave:\nhttps://www.instagram.com/apie_tave_eilerastis/\nNuo tada dalinuosi užsiėmimų akimirkomis bei pačiais eilėraščiais „Instagram’e“. Su Eilėraščiu apie Tave dalyvavau festivaliuose: 1000 Saulių, Dpoezijos šaltinis, Aritmija. Taip pat rengiau vakarus Vilniuje (Vaidenio Svetainėje):\nhttps://facebook.com/events/s/eilerastis-apie-tave/1194503605643162/\nIr Kaune, Godo bare:\nhttps://facebook.com/events/s/poezija-apie-tave-0322/1462155311836193/\n2025 m. skaičiau Vydūno ištraukas trijuose renginiuose:\n    • Žolinė Labanoro girioje (https://fb.me/e/5iqJh9THG)\n    • Kasmetinėje Vydūno stovykloje Bitėnuose\n    • Vydūnas apie Meilę (https://youtu.be/zHB3uOLTNRA)\nPastarąjį renginį pats suorganizavau:\nhttps://kauno.diena.lt/naujienos/laisvalaikis-ir-kultura/kultura/vydunas-apie-meile-1213194\nNuo 2024 m. pažįstamų rate organizuoju poezijos vakarus – erdvę dalintis kūryba, kalbėtis, improvizuoti. Viešumo nėra siekiama, tačiau radau vieną įrašą „Facebook’e“ (→ nuoroda).\nKol kas surengta 11 tokių vakarų. Prisegu nuorodą į vieną jų sukurtą filmuką:\nhttps://youtu.be/jO3ThN5oLAI\n\n2024 m. dalyvavau sutartinių giedojimo renginyje Suburtynė, kur vedžiau šiuolaikinių sutartinių kūrimo dirbtuves.\n→ Suburtynė 2024 įrašas\n\n2025 m. dalyvavau renginyje Sutartinių diena Kauno miesto muziejuje. Kartu su grupe Ratas kūriau eksperimentinę \timprovizaciją, jungiančią sutartines su pasakojimu.\n\n2025 Poezija publikuota Varėnos rajono literatūros almanache Merkio lieptai.\n\n2025 m. Išleista knyga \"Eglė Žaislų Karalienė\".\n\n2025 - 2026 rengiami pasakos pristatymai bei pasakų kūrimo edukacijos vaikams mokyklose, bibliotekose, renginiuose. Nuoroda į pasakos facebook puslapį:\nhttps://www.facebook.com/p/Egl%C4%97-%C5%BDaisl%C5%B3-Karalien%C4%97-61584858337753/\n\n2024 – 2026 savos kūrybos poetiniai pasirodymai sutartinių giedojimo renginyje Suburtynė\n\n2026 kūryba publikuojama ir elektroniniame literatūros žurnale Rankos:\nhttps://www.rankos.net/\n\n2026 eilėraščių kūrimo dirbtuvės kaliniams Kauno Kalėjime\n\n2026 sukurti eilėraščiai Ilzės Civinskaitės spektaklio \"Tu man skolinga\" garso takeliui.\n\n2026 Savos kūrybos poezijos pasirodymas \"Fluxus\" festivalyje Kaune",
-          "box": {
-            "x": 2,
-            "y": 116,
-            "w": 44,
-            "z": 2
-          }
+          "type": "timeline",
+          "heading": "Edukacijos ir dirbtuvės",
+          "entries": [
+            {
+              "year": "2026",
+              "title": "Repo dirbtuvės",
+              "detail": "",
+              "items": [
+                {
+                  "year": "2026",
+                  "title": "Vaikų stovykla „Gentys prie Lašinių piliakalnio“",
+                  "detail": ""
+                },
+                {
+                  "year": "2026",
+                  "title": "Žalioji gamtos mokykla",
+                  "detail": "Kaunas"
+                }
+              ]
+            },
+            {
+              "year": "2026",
+              "title": "Eilėraščių kūrimo dirbtuvės kaliniams",
+              "detail": "Kauno kalėjimas"
+            },
+            {
+              "year": "2026",
+              "title": "Edukacija apie dailininko profesiją",
+              "detail": "Kauno Jono Pauliaus II gimnazija"
+            },
+            {
+              "year": "2026",
+              "title": "Piešimo ant sienų pamoka 5 klasės mokiniui",
+              "detail": "Kaunas"
+            },
+            {
+              "year": "2026",
+              "title": "Skaitymo ir improvizacijos edukacijos pradinukams",
+              "detail": "",
+              "items": [
+                {
+                  "year": "2026",
+                  "title": "Jonavos S. Neries pagrindinė mokykla",
+                  "detail": "4 užsiėmimai"
+                },
+                {
+                  "year": "2026",
+                  "title": "Jonavos Raimundo Samulevičiaus progimnazija",
+                  "detail": "4 užsiėmimai"
+                }
+              ]
+            },
+            {
+              "year": "2025–2026",
+              "title": "Tęstinė dailės ir gatvės meno edukacijų serija",
+              "detail": "Žalioji gamtos mokykla, Kaunas · 8 užsiėmimai"
+            },
+            {
+              "year": "2022–2026",
+              "title": "Grafiti dirbtuvės",
+              "detail": "",
+              "items": [
+                {
+                  "year": "2026",
+                  "title": "Renginys „Švęskime upę“",
+                  "detail": "Kaunas, Nemuno krantinė"
+                },
+                {
+                  "year": "2024",
+                  "title": "Renginys „Švęskime upę“",
+                  "detail": "Kaunas"
+                },
+                {
+                  "year": "2024",
+                  "title": "Dirbtuvės su jaunimu",
+                  "detail": "Kaunas"
+                },
+                {
+                  "year": "2024",
+                  "title": "Vaikams pabėgėlių dienos proga",
+                  "detail": "Kaunas"
+                },
+                {
+                  "year": "2024",
+                  "title": "Įmonės vasaros festivalis",
+                  "detail": "Bistrampolio dvaras"
+                },
+                {
+                  "year": "2024",
+                  "title": "Įmonės vasaros festivalis",
+                  "detail": "Smaragdo slėnis, Vilniaus r."
+                },
+                {
+                  "year": "2023",
+                  "title": "Joninių šventė",
+                  "detail": "Kaunas"
+                },
+                {
+                  "year": "2023",
+                  "title": "Pradinukų dienos stovykla",
+                  "detail": "Kaunas"
+                },
+                {
+                  "year": "2022",
+                  "title": "Nemakščių Martyno Mažvydo gimnazija",
+                  "detail": ""
+                }
+              ]
+            },
+            {
+              "year": "2024",
+              "title": "Tapybos ant aitvarų dirbtuvės",
+              "detail": "",
+              "items": [
+                {
+                  "year": "2024",
+                  "title": "Įmonės vasaros festivalis",
+                  "detail": "Vilniaus r."
+                },
+                {
+                  "year": "2024",
+                  "title": "Palomenė",
+                  "detail": "Kaišiadorių r."
+                }
+              ]
+            },
+            {
+              "year": "2022–2023",
+              "title": "Kūrybinės piešimo dirbtuvės vaikams",
+              "detail": "",
+              "items": [
+                {
+                  "year": "2023",
+                  "title": "Kaunas",
+                  "detail": ""
+                },
+                {
+                  "year": "2022",
+                  "title": "Bezdonių mokykla",
+                  "detail": ""
+                }
+              ]
+            }
+          ]
         },
         {
-          "type": "text",
-          "heading": "Veiklos su vaikais",
-          "body": "2018 darbas su negalią turinčiais vaikais. Socialinio darbuotojo padėjėjo pareigos Vilijampolės socialinės globos namuose. Du mėnesiai reguliaraus darbo\n\n2022 grafiti dirbtuvės Nemakščių Martyno Mažvydo gimnazijos mokiniams\n\n2022 Kūrybinės piešimo dirbtuvės Bezdonių mokykloje\n\n2023 grafiti dirbtuvės pradinukų dienos stovykloje Kaune\n\n2023 anglų kalbos korepetitoriaus paslaugos 10 klasės mokiniui. \nApie 40 užsiėmimų\n\n2024 grafiti dirbtuvės vaikams pabėgėlių dienos proga Kaune\n\n2025 - 2026 anglų kalbos ir dailės korepetitoriaus paslaugos 7 - 10 klasių mokiniams. \nApie 30 pamokų.\n\n2025 - 2026 anglų kalbos pamokos 2-4 metų vaikams bei jų priežiūra, auklėjimas.\n\n2026 anglų kalbos pamokos antros klasės mokiniui. \n2 užsiėmimai\n\n2026 repo dirbtuvės Žaliojoje Gamtos mokykloje Kaune\n\n2026 repo dirbtuvės vaikų stovykloje \"Gentys prie Lašinių piliakalnio\"\n\n2026 edukacija apie dailininko profesiją Kauno Jono Pauliaus II gimnazijoje\n\n2026 piešimo ant sienų pamoka Kaune (5 klasės mokiniui)\n\n2025 - 2026 tęstinė dailės ir gatvės meno edukacijų serija Žaliojoje gamtos mokykloje Kaune \n8 užsiėmimai\n\n\nSkaitymo ir improvizacijos edukacijos pradinukams:\n\n2026 Jonavos S. Neries pagrindinė mokykla (pradinių klasių mokiniai). 4 užsiėmimai\n2026 Jonavos Raimundo Samulevičiaus progimnazija (pradinių klasių mokiniai) 4 užsiėmimai\n \n\nPasakos kūrimo edukacija:\n\n2025 Kauno Žaliojoje Gamtos mokykloje\n\n2026 Kauno Erudito licėjus (pradinės klasės) \n2 užsiėmimai\n\nInteraktyvus autorinės pasakos \"Eglė Žaislų Karalienė\" pristatymas:\n\n2025 Žaliojoje gamtos mokykloje (3-8 klasės)\n\n2026 Kauno Karmėlavos  Balio Buračo gimnazija (7 klasė)\n \n2026 Kauno Martyno Mažvydo progimnazija (6 klasė)\n\n2026 Aleksoto Dobkevičiaus gimnazija (1-4 klasė bei 7 klasės)\n2 užsiėmimai\n\n2026 Kauno Palemono gimnazija (1-4 klasės) \n5 užsiėmimai\n\n2026 Kauno vaikų ir jaunimo teatre \"Vilkolakis\" (ikimokyklinio amžiaus)\n\n2026 Kauno Ąžuolyno bibliotekoje (3 klasė)\n\n2026 Kauno Žemųjų Šančių bibliotekoje (3 klasė)\n\n2026 Vasaros stovykla vaikams \"Naminukai\" (7-15 metų amžius)\n\n2026 Vasaros stovykla vaikams „Gentys prie Lašinių piliakalnio\" (7-17 metų amžiaus)\n\n2026 Kauno Varpelio pradinė mokykla (1 klasė)\n\n\n\n\n\n\n"
+          "type": "timeline",
+          "heading": "Festivaliai ir plenerai",
+          "entries": [
+            {
+              "year": "2020",
+              "title": "Gatvės meno renginys „Sidabrinio amžiaus spalvos“",
+              "detail": "Alytus"
+            },
+            {
+              "year": "2019",
+              "title": "Gatvės meno festivalis „We Art festival“",
+              "detail": "Panevėžys"
+            },
+            {
+              "year": "2019",
+              "title": "Piešimo pleneras „Nida, vėjas ir aš“",
+              "detail": "Nida"
+            }
+          ]
+        },
+        {
+          "type": "timeline",
+          "heading": "Išsilavinimas",
+          "entries": [
+            {
+              "year": "2021",
+              "title": "Intuityvios estetikos seminaras",
+              "detail": "Amres ART"
+            },
+            {
+              "year": "2021",
+              "title": "Grafinio dizainerio praktika",
+              "detail": "Kauno menininkų namai"
+            },
+            {
+              "year": "2021",
+              "title": "Grafinio dizaino profesinis bakalauras",
+              "detail": "Vilniaus technologijų ir dizaino kolegija"
+            },
+            {
+              "year": "2020",
+              "title": "Erasmus+ studijos",
+              "detail": "Akademia Sztuk Pięknych w Gdańsku, Lenkija"
+            },
+            {
+              "year": "2018",
+              "title": "Piešimo kursai",
+              "detail": "Pas dailininką Valentiną Varną"
+            },
+            {
+              "year": "2017",
+              "title": "Vidurinis išsilavinimas",
+              "detail": "Kauno „Aušros“ gimnazija"
+            }
+          ]
+        },
+        {
+          "type": "timeline",
+          "heading": "Kita patirtis",
+          "entries": [
+            {
+              "year": "2025–2026",
+              "title": "Anglų kalbos pamokos 2–4 metų vaikams, jų priežiūra ir auklėjimas",
+              "detail": ""
+            },
+            {
+              "year": "2025–2026",
+              "title": "Anglų kalbos ir dailės korepetitorius 7–10 klasių mokiniams",
+              "detail": "Apie 30 pamokų"
+            },
+            {
+              "year": "2026",
+              "title": "Anglų kalbos pamokos antros klasės mokiniui",
+              "detail": "2 užsiėmimai"
+            },
+            {
+              "year": "2023",
+              "title": "Anglų kalbos korepetitorius 10 klasės mokiniui",
+              "detail": "Apie 40 užsiėmimų"
+            },
+            {
+              "year": "2018",
+              "title": "Socialinio darbuotojo padėjėjas",
+              "detail": "Vilijampolės socialinės globos namai · darbas su negalią turinčiais vaikais · du mėnesiai"
+            }
+          ]
         }
       ],
       "bg": {
-        "imageOpacity": 0.27,
-        "particlesOff": true
+        "imageOpacity": 0.18,
+        "particlesOff": false
       },
       "layout": "flow",
       "boxes": {

@@ -31,6 +31,10 @@ html.has-admin .nav { right: 400px; }
 }
 .adm__brand { font-family: var(--drip); font-weight: 900; font-size: 24px; color: var(--accent); line-height: 1; }
 .adm__status { flex: 1; color: var(--ink-dim); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; }
+.adm__logout { background: none; border: 1px solid var(--line); padding: 4px 8px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; }
+.adm__logout:hover { border-color: var(--accent); color: var(--accent); }
+.adm__mono { font-family: ui-monospace, Consolas, monospace !important; font-size: 12px !important; white-space: pre; overflow-x: auto; }
+.adm__login .adm__btn { margin-top: var(--u); }
 .adm__x { background: none; border: 1px solid var(--line); width: 32px; height: 32px; }
 .adm__x:hover { border-color: var(--accent); color: var(--accent); }
 
@@ -154,7 +158,7 @@ html.has-admin .nav { right: 400px; }
   bottom: calc(var(--u) * 2);
   z-index: 45;
   padding: calc(var(--u) / 2) var(--u);
-  background: var(--accent);
+  background: #ffcf29; /* fixed, so it stays visible whatever the site colours are */
   color: #0b0503;
   font-weight: 800;
   font-size: 12px;

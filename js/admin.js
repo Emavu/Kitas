@@ -10,6 +10,8 @@
   const SLIDERS = [
     ["Vortex", [
       ["particleCount", "Particles", 200, 8000, 100],
+      ["drips", "Paint drips (paint style)", 0, 1, 0.01],
+      ["dripLength", "Drip length (paint style)", 0.2, 3, 0.05],
       ["spinSpeed", "Idle spin", 0, 2, 0.01],
       ["scrollSpin", "Scroll spin", 0, 6, 0.05],
       ["inflow", "Pull to centre", 0, 3, 0.05],
@@ -50,8 +52,82 @@
     "Žarijos": { colorBg: "#120403", colorInk: "#ffe2d6", colorDim: "#c98a7a", colorLine: "#5c1a12", colorAccent: "#ff4a1c", colorAccent2: "#ffb703", colorName1: "#ffe2d6", colorName2: "#ff4a1c", particleOuter: "#b3120a", particleCore: "#ff9e3d" },
     "Naktis": { colorBg: "#03050f", colorInk: "#e6ecff", colorDim: "#8a95b8", colorLine: "#1f2a4d", colorAccent: "#7cc4ff", colorAccent2: "#ff7a59", colorName1: "#e6ecff", colorName2: "#7cc4ff", particleOuter: "#2a3cff", particleCore: "#b8f0ff" },
     "Popierius": { colorBg: "#f3ead8", colorInk: "#1d1209", colorDim: "#6b5440", colorLine: "#c9b394", colorAccent: "#d1460a", colorAccent2: "#8f1d00", colorName1: "#1d1209", colorName2: "#d1460a", particleOuter: "#e0721f", particleCore: "#ffb74d" },
+    "Tušas": { colorBg: "#f3f0e8", colorInk: "#111111", colorDim: "#55514a", colorLine: "#cfc8bb", colorAccent: "#111111", colorAccent2: "#b3261e", colorName1: "#111111", colorName2: "#111111", particleOuter: "#111111", particleCore: "#111111" },
     "Rūgštis": { colorBg: "#050805", colorInk: "#ecffe0", colorDim: "#9bb88a", colorLine: "#26401d", colorAccent: "#c6ff2e", colorAccent2: "#ff3cac", colorName1: "#ecffe0", colorName2: "#c6ff2e", particleOuter: "#3dff8b", particleCore: "#f4ff9e" }
   };
+
+  // Login gate. Only a SHA-256 hash of "username:password" is stored here.
+  // This keeps casual visitors out of the editor; the live site itself can only be
+  // changed by whoever can upload js/content.js to GitHub.
+  const LOGIN_HASH = "fd4e39942097282713c9b32cf782e7d06b0dfd1d91b90b9e37913afcd3c77b7c";
+  const AUTH_KEY = "rv-admin-auth";
+  const authed = () => { try { return sessionStorage.getItem(AUTH_KEY) === LOGIN_HASH; } catch (e) { return false; } };
+
+  // Small SHA-256 (works on plain http too, where crypto.subtle is unavailable)
+  function sha256(str) {
+    const K = [], H = [];
+    let n = 2, c = 0;
+    const frac = (x) => ((x - Math.floor(x)) * 4294967296) | 0;
+    while (c < 64) {
+      let prime = true;
+      for (let i = 2; i * i <= n; i++) if (n % i === 0) { prime = false; break; }
+      if (prime) { if (c < 8) H[c] = frac(Math.pow(n, 1 / 2)); K[c++] = frac(Math.pow(n, 1 / 3)); }
+      n++;
+    }
+    const bytes = Array.from(new TextEncoder().encode(str));
+    const bitLen = bytes.length * 8;
+    bytes.push(0x80);
+    while (bytes.length % 64 !== 56) bytes.push(0);
+    for (let i = 7; i >= 0; i--) bytes.push(i > 3 ? 0 : (bitLen >>> (i * 8)) & 255);
+    const rotr = (x, r) => (x >>> r) | (x << (32 - r));
+    for (let o = 0; o < bytes.length; o += 64) {
+      const w = [];
+      for (let i = 0; i < 16; i++) w[i] = (bytes[o + i * 4] << 24) | (bytes[o + i * 4 + 1] << 16) | (bytes[o + i * 4 + 2] << 8) | bytes[o + i * 4 + 3];
+      for (let i = 16; i < 64; i++) {
+        const s0 = rotr(w[i - 15], 7) ^ rotr(w[i - 15], 18) ^ (w[i - 15] >>> 3);
+        const s1 = rotr(w[i - 2], 17) ^ rotr(w[i - 2], 19) ^ (w[i - 2] >>> 10);
+        w[i] = (w[i - 16] + s0 + w[i - 7] + s1) | 0;
+      }
+      let [a, b, cc, d, e, f, g, h] = H;
+      for (let i = 0; i < 64; i++) {
+        const t1 = (h + (rotr(e, 6) ^ rotr(e, 11) ^ rotr(e, 25)) + ((e & f) ^ (~e & g)) + K[i] + w[i]) | 0;
+        const t2 = ((rotr(a, 2) ^ rotr(a, 13) ^ rotr(a, 22)) + ((a & b) ^ (a & cc) ^ (b & cc))) | 0;
+        h = g; g = f; f = e; e = (d + t1) | 0; d = cc; cc = b; b = a; a = (t1 + t2) | 0;
+      }
+      [a, b, cc, d, e, f, g, h].forEach((v, i) => { H[i] = (H[i] + v) | 0; });
+    }
+    return H.map((v) => (v >>> 0).toString(16).padStart(8, "0")).join("");
+  }
+
+  function renderLogin(error) {
+    panel.innerHTML = `
+      <div class="adm__top">
+        <strong class="adm__brand">Redaktorius</strong>
+        <span class="adm__status">Locked</span>
+        <button class="adm__x" data-act="close" type="button" aria-label="Close">✕</button>
+      </div>
+      <form class="adm__body adm__login" data-login autocomplete="on">
+        <fieldset class="adm__group"><legend>Prisijungti</legend>
+          <label class="adm__field"><span>Vartotojo vardas</span><input type="text" name="user" autocomplete="username" required></label>
+          <label class="adm__field"><span>Slaptažodis</span><input type="password" name="pass" autocomplete="current-password" required></label>
+          ${error ? `<p class="adm__warn">${error}</p>` : ""}
+          <button type="submit" class="adm__btn">Prisijungti</button>
+        </fieldset>
+      </form>`;
+    panel.querySelector("input[name=user]").focus();
+  }
+
+  panel.addEventListener("submit", (e) => {
+    if (!e.target.matches("[data-login]")) return;
+    e.preventDefault();
+    const f = new FormData(e.target);
+    if (sha256(`${f.get("user").trim()}:${f.get("pass")}`) === LOGIN_HASH) {
+      try { sessionStorage.setItem(AUTH_KEY, LOGIN_HASH); } catch (err) {}
+      open();
+    } else {
+      renderLogin("Neteisingas vartotojo vardas arba slaptažodis.");
+    }
+  });
 
   let tab = "design";
   let pageIdx = 0;
@@ -77,6 +153,7 @@
       <div class="adm__top">
         <strong class="adm__brand">Redaktorius</strong>
         <span class="adm__status" id="adm-status">${Store.hasDraft() ? "Draft saved" : "Published"}</span>
+        <button class="adm__logout" data-act="logout" type="button">Atsijungti</button>
         <button class="adm__x" data-act="close" type="button" aria-label="Close">✕</button>
       </div>
       <div class="adm__tabs">
@@ -87,7 +164,14 @@
 
   function designTab() {
     const d = D().design;
-    return SLIDERS.map(([group, rows]) => `
+    return `<fieldset class="adm__group"><legend>Vortex style</legend>
+        <label class="adm__field"><span>How the swirl looks</span>
+          <select data-vstyle>
+            <option value="paint" ${d.vortexStyle === "paint" ? "selected" : ""}>Paint — brush dabs that drip</option>
+            <option value="ink" ${d.vortexStyle === "ink" ? "selected" : ""}>Ink — stippled &amp; scaled pen-and-ink spirals (best with the “Tušas” colours)</option>
+            <option value="particles" ${!["paint", "ink"].includes(d.vortexStyle) ? "selected" : ""}>Particles — glowing specks</option>
+          </select></label>
+      </fieldset>` + SLIDERS.map(([group, rows]) => `
       <fieldset class="adm__group"><legend>${group}</legend>
         ${rows.map(([key, label, min, max, step]) => `
           <label class="adm__slider">
@@ -152,6 +236,15 @@
         </div>`;
       }
       let body = field("Heading", `${bp}.heading`);
+      if (b.type === "timeline") {
+        const line = (e) => [e.year, e.title].concat(e.detail ? e.detail.split("\n") : []).join(" | ");
+        const txt = (b.entries || []).map((e) => e.group ? `# ${e.group}`
+          : [line(e)].concat((e.items || []).map((s) => `- ${line(s)}`)).join("\n")).join("\n");
+        body += `<label class="adm__field"><span>One entry per line: <b>Year | Title | Details</b> (each extra “|” = new detail line).
+          A line starting with <b>-</b> belongs to the entry above it.
+          A line starting with <b>#</b> is a sub-heading. (${(b.entries || []).filter((e) => !e.group).length} entries)</span>
+          <textarea rows="12" class="adm__mono" data-timeline="${bp}">${esc(txt)}</textarea></label>`;
+      }
       if (b.type === "text") body += field("Text (blank line = new paragraph)", `${bp}.body`, { area: true, rows: 6 });
       if (b.type === "video") body += field("YouTube / Vimeo link", `${bp}.url`);
       if (b.type === "stacks") {
@@ -228,6 +321,7 @@
         <div class="adm__mini adm__mini--add">
           <button type="button" data-act="b-add" data-type="stacks">+ Photo stacks</button>
           <button type="button" data-act="b-add" data-type="text">+ Text</button>
+          <button type="button" data-act="b-add" data-type="timeline">+ Timeline (CV)</button>
           <button type="button" data-act="b-add" data-type="video">+ Video</button>
           <button type="button" data-act="b-add" data-type="panel">+ Glass panel</button>
         </div>
@@ -276,6 +370,21 @@
       panel.querySelector(`#out-${key}`).textContent = t.value;
       return Store.change("design");
     }
+    if (t.dataset.timeline) {
+      const parse = (l) => {
+        const [year = "", title = "", ...detail] = l.split(/\s*\|\s*/);
+        return { year, title, detail: detail.join("\n") };
+      };
+      const entries = [];
+      t.value.split("\n").map((l) => l.trim()).filter(Boolean).forEach((l) => {
+        if (l.startsWith("#")) return entries.push({ group: l.replace(/^#+\s*/, "") });
+        const last = entries[entries.length - 1];
+        if (l.startsWith("-") && last && !last.group) return (last.items = last.items || []).push(parse(l.replace(/^-\s*/, "")));
+        entries.push(parse(l));
+      });
+      getPath(t.dataset.timeline).entries = entries;
+      return Store.change("content");
+    }
     if (t.dataset.pbg) {
       const p = pages()[pageIdx];
       p.bg = p.bg || {};
@@ -323,6 +432,10 @@
   panel.addEventListener("change", (e) => {
     const t = e.target;
     if (t.dataset.fontfile !== undefined && t.files[0]) readFont(t.files[0]);
+    if (t.dataset.vstyle !== undefined) {
+      D().design.vortexStyle = t.value;
+      return Store.change("design");
+    }
     if (t.dataset.namefont !== undefined) {
       D().design.nameFont = t.value;
       Store.change("design");
@@ -398,6 +511,7 @@
         const type = b.dataset.type;
         const block = { type, heading: "" };
         if (type === "text") block.body = "";
+        if (type === "timeline") block.entries = [{ year: String(new Date().getFullYear()), title: "Pavadinimas", detail: "Vieta" }];
         if (type === "video") block.url = "";
         if (type === "panel") Object.assign(block, { color: "#000000", opacity: 0.4, blur: 16, box: { x: 30, y: 20, w: 40, h: 14, z: 1 } });
         else if (pages()[pageIdx].layout === "free") {
@@ -430,6 +544,10 @@
       return render();
     }
     if (act === "close") return close();
+    if (act === "logout") {
+      try { sessionStorage.removeItem(AUTH_KEY); } catch (err) {}
+      return close();
+    }
     if (act === "copy-url") return copy(panel.querySelector("#adm-url").textContent, b);
     if (act === "copy-json") return copy(JSON.stringify(D(), null, 2), b);
     if (act === "download") return download();
@@ -534,6 +652,7 @@
     if (idx >= 0) pageIdx = idx;
     panel.hidden = false;
     document.documentElement.classList.add("has-admin");
+    if (!authed()) return renderLogin();
     Free.setEditing(true);
     flag.hidden = true;
     render();

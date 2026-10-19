@@ -80,6 +80,16 @@
     return null;
   }
 
+  // Sub-entries of one project (e.g. every presentation of a book), always shown open.
+  function subItems(items) {
+    if (!items || !items.length) return "";
+    const list = `<ul class="tl__sub">${items.map((s) => `<li>
+      <span class="tl__subyear">${esc(s.year || "")}</span>
+      <span><b>${linkify(esc(s.title))}</b>${s.detail ? `<span class="tl__subdetail">${linkify(esc(s.detail)).replace(/\n/g, "<br>")}</span>` : ""}</span>
+    </li>`).join("")}</ul>`;
+    return list;
+  }
+
   function renderBlock(b, ctx) {
     if (b.type === "panel") {
       if (!ctx.free) return "";
@@ -91,6 +101,24 @@
     const head = b.heading ? `<h2 class="block__head"><span class="block__idx">${String(ctx.i + 1).padStart(2, "0")}</span>${esc(b.heading)}</h2>` : "";
     if (b.type === "text") {
       return `<section class="block block--text reveal"${sid}>${head}<div class="prose">${paras(b.body)}</div></section>`;
+    }
+    if (b.type === "timeline") {
+      // CV-style list: year · title · details. Long lists start collapsed.
+      const LIMIT = 10;
+      let prev = null, n = 0;
+      const rows = (b.entries || []).map((e) => {
+        if (e.group) { prev = null; return `<li class="tl__group${n >= LIMIT ? " tl__more" : ""}">${esc(e.group)}</li>`; }
+        const same = e.year === prev;
+        prev = e.year;
+        const more = n++ >= LIMIT ? " tl__more" : "";
+        const long = (e.title || "").length > 90 ? " is-long" : "";
+        return `<li class="tl__row${same ? " is-same" : ""}${more}">
+          <span class="tl__year">${esc(e.year)}</span>
+          <div class="tl__body"><span class="tl__title${long}">${linkify(esc(e.title))}</span>${e.detail ? `<span class="tl__detail">${linkify(esc(e.detail)).replace(/\n/g, "<br>")}</span>` : ""}${subItems(e.items)}</div>
+        </li>`;
+      }).join("");
+      const toggle = n > LIMIT ? `<button type="button" class="tl__toggle" data-tl-toggle data-count="${n}">Rodyti visus (${n}) ↓</button>` : "";
+      return `<section class="block block--timeline reveal"${sid}>${head}<div class="tl-wrap"><ol class="tl${toggle ? " is-collapsed" : ""}">${rows}</ol>${toggle}</div></section>`;
     }
     if (b.type === "video") {
       const src = b.url ? videoEmbed(b.url) : null;
@@ -238,6 +266,15 @@
   }
 
   document.addEventListener("click", (e) => {
+    const tl = e.target.closest("[data-tl-toggle]");
+    if (tl) {
+      const list = tl.previousElementSibling;
+      const open = list.classList.toggle("is-collapsed") === false;
+      tl.textContent = open ? "Suskleisti ↑" : `Rodyti visus (${tl.dataset.count}) ↓`;
+      if (!open) tl.closest(".block").scrollIntoView({ behavior: "smooth", block: "start" });
+      Free.layout();
+      return;
+    }
     const sec = e.target.closest("a[data-section]");
     if (sec) {
       e.preventDefault();
