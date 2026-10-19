@@ -1,0 +1,11 @@
+# Apache (most .lt hosts): send every non-file path, e.g. /kitasfylmas, to index.html
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]
+
+# Keep content.js fresh so published edits show up immediately
+<FilesMatch "content\.js$">
+  Header set Cache-Control "no-cache"
+</FilesMatch>
