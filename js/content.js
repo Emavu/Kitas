@@ -133,7 +133,7 @@ window.SITE_DEFAULTS = {
     {
       "slug": "apie",
       "title": "Apie",
-      "hidden": true,
+      "hidden": false,
       "intro": "Sienų tapyba, iliustracija, literatūra ir edukacijos. Naujausi darbai — viršuje.",
       "blocks": [
         {
@@ -812,7 +812,7 @@ window.SITE_DEFAULTS = {
     {
       "slug": "kitasfylmas",
       "title": "Kitas fylmas",
-      "hidden": true,
+      "hidden": false,
       "intro": "Slaptas puslapis — pasiekiamas tik per nuorodą. Jo nėra meniu.",
       "blocks": [
         {
@@ -866,7 +866,8 @@ window.SITE_DEFAULTS = {
             }
           ]
         }
-      ]
+      ],
+      "bg": {}
     },
     {
       "slug": "gertruda-ir-ramunas",
@@ -920,6 +921,14 @@ window.SITE_DEFAULTS = {
           "z": 3
         }
       },
+      "bg": {}
+    },
+    {
+      "slug": "naujas-1",
+      "title": "Naujas puslapis",
+      "hidden": true,
+      "intro": "",
+      "blocks": [],
       "bg": {}
     }
   ]
