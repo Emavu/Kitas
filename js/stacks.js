@@ -1,20 +1,17 @@
-/* Image stacks that unstack into a grid on click (GSAP Flip),
-   in the spirit of Codrops' ImageStackGrid. */
+/* Image stacks. Clicking a stack opens it in place: the card grows to the full
+   width of the page, its description and photos unfold inside it (the photos fly
+   out of the pile, GSAP Flip) and the caption slides down underneath them.
+   Everything after the card moves down to make room. Clicking a photo enlarges it. */
 (function () {
   gsap.registerPlugin(Flip);
 
-  const overlay = document.getElementById("unstack");
-  const bgEl = overlay.querySelector(".unstack__bg");
-  const inner = overlay.querySelector(".unstack__inner");
-  const grid = document.getElementById("unstack-grid");
-  const titleEl = document.getElementById("unstack-title");
-  const numEl = document.getElementById("unstack-num");
-  const closeBtn = document.getElementById("unstack-close");
-
-  let active = null;   // the .stack currently open
+  let active = null;   // { stack, panel, freeItem }
   let busy = false;
 
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const linkify = (h) => h.replace(/(https?:\/\/[^\s<]+[^\s<.,;:!?)\]])/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+  const paras = (txt) => String(txt || "").split(/\n\s*\n/).filter((p) => p.trim())
+    .map((p) => `<p>${linkify(esc(p.trim())).replace(/\n/g, "<br>")}</p>`).join("");
   const design = () => Store.data.design;
 
   // Deterministic pseudo-random so piles look the same on every render
@@ -29,22 +26,20 @@
     return `--x:${(jitter(i * 3 + 1) * 2).toFixed(2)};--y:${(jitter(i * 7 + 2) * 2).toFixed(2)};--r:${(jitter(i * 5 + 3) * 2 * (k / 4 + 0.5)).toFixed(2)};`;
   }
 
-  function render(groups, offset) {
+  function render(groups) {
     return `<div class="stacks">${groups
-      .map((g, gi) => {
+      .map((g) => {
         const imgs = (g.images || []).filter(Boolean);
-        const num = String(offset + gi + 1).padStart(2, "0");
         return `
-        <figure class="stack" data-title="${esc(g.title)}" data-num="${num}" tabindex="0" role="button" aria-label="Atidaryti: ${esc(g.title)}">
+        <figure class="stack" tabindex="0" role="button" aria-expanded="false" aria-label="Atidaryti: ${esc(g.title)}" data-text="${esc(g.text || "")}">
           <div class="stack__pile">
             ${imgs
               .map((src, i) => `<img class="stack__img" src="${esc(src)}" alt="${esc(g.title)} ${i + 1}" style="${pileVars(i)}z-index:${imgs.length - i}" ${i < 4 ? "" : 'loading="lazy"'} draggable="false">`)
               .join("")}
           </div>
           <figcaption class="stack__cap">
-            <span class="stack__num">${num}</span>
             <span class="stack__title">${esc(g.title)}</span>
-            <span class="stack__meta">${esc(g.year || "")} — ${imgs.length} foto</span>
+            ${g.year ? `<span class="stack__meta">${esc(g.year)}</span>` : ""}
           </figcaption>
         </figure>`;
       })
@@ -64,94 +59,215 @@
   function bind(root) {
     root.querySelectorAll(".stack").forEach((stack) => {
       stack.querySelectorAll(".stack__img").forEach(setRatio);
-      stack.addEventListener("click", () => open(stack));
+      stack.addEventListener("click", (e) => {
+        if (e.target.closest(".gpanel__close")) return close();
+        const photo = e.target.closest(".gpanel .stack__img");
+        if (photo) return Lightbox.open(photo);
+        if (e.target.closest(".gpanel")) return; // text and gaps inside an open card
+        toggle(stack);
+      });
       stack.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(stack); }
+        if (e.target !== stack) return;
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(stack); }
       });
     });
   }
 
-  function open(stack) {
-    if (busy || active) return;
-    busy = true;
-    active = stack;
-    const d = design().flipDuration;
-    const pile = stack.querySelector(".stack__pile");
-    const imgs = [...pile.querySelectorAll(".stack__img")];
-    imgs.forEach((img) => img.loading = "eager");
+  function toggle(stack) {
+    if (busy) return;
+    if (active && active.stack === stack) return close();
+    if (active) return close(() => open(stack));
+    open(stack);
+  }
 
-    titleEl.textContent = stack.dataset.title;
-    numEl.textContent = stack.dataset.num;
+  // Everything whose position changes when a card opens or closes, so Flip can animate it
+  function movers(stack) {
+    const freeItem = stack.closest(".free__item");
+    const canvas = stack.closest(".free");
+    const list = freeItem && canvas && !canvas.classList.contains("is-flow")
+      ? [...canvas.querySelectorAll(":scope > .free__item")]
+      : [...stack.parentElement.querySelectorAll(":scope > .stack")];
+    return list.concat([...stack.querySelectorAll(".stack__img, .stack__cap")]);
+  }
 
-    const state = Flip.getState(imgs);
-    document.documentElement.classList.add("is-locked", "is-flipping");
-    overlay.classList.add("is-open");
-    overlay.setAttribute("aria-hidden", "false");
-    inner.scrollTop = 0;
-    imgs.forEach((img) => grid.appendChild(img));
-
-    gsap.fromTo(bgEl, { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: d * 0.75, ease: "expo.inOut" });
-    gsap.fromTo(".unstack__head > *", { yPercent: 110 }, { yPercent: 0, duration: d * 0.8, ease: "expo.out", delay: d * 0.4, stagger: 0.06 });
+  function animate(state, d, done) {
     Flip.from(state, {
       duration: d,
       ease: "expo.inOut",
-      stagger: Math.min(0.04, 0.5 / imgs.length),
-      absolute: true,
-      zIndex: 5,
-      onComplete: () => {
-        document.documentElement.classList.remove("is-flipping");
-        busy = false;
-        closeBtn.focus({ preventScroll: true });
-      }
+      nested: true,
+      scale: false,
+      simple: false,
+      onComplete: done
     });
   }
 
-  function close() {
-    if (busy || !active) return;
+  function open(stack) {
     busy = true;
-    const stack = active;
+    const d = design().flipDuration;
+    const imgs = [...stack.querySelectorAll(".stack__pile .stack__img")];
+    imgs.forEach((img) => { img.loading = "eager"; });
+    const freeItem = stack.closest(".free__item");
+    const closedHeight = freeItem ? freeItem.offsetHeight : 0;
+
+    const state = Flip.getState(movers(stack));
+
+    const panel = document.createElement("div");
+    panel.className = "gpanel";
+    const text = stack.dataset.text;
+    panel.innerHTML = `
+      <button type="button" class="gpanel__close" aria-label="Uždaryti">${ICONS.close}</button>
+      ${text ? `<div class="gpanel__text">${paras(text)}</div>` : ""}
+      <div class="gpanel__grid"></div>`;
+    const grid = panel.querySelector(".gpanel__grid");
+    imgs.forEach((img) => grid.appendChild(img));
+    stack.insertBefore(panel, stack.querySelector(".stack__cap"));
+
+    active = { stack, panel, freeItem };
+    stack.classList.add("is-open");
+    stack.setAttribute("aria-expanded", "true");
+    if (freeItem) freeItem.classList.add("has-panel");
+    document.documentElement.classList.add("is-flipping");
+    if (freeItem) Free.setExpanded(freeItem, closedHeight); else Free.layout();
+
+    gsap.fromTo(panel.querySelectorAll(".gpanel__text, .gpanel__close"), { autoAlpha: 0, y: 24 },
+      { autoAlpha: 1, y: 0, duration: d * 0.6, delay: d * 0.35, stagger: 0.08, ease: "expo.out" });
+    animate(state, d, () => {
+      document.documentElement.classList.remove("is-flipping");
+      busy = false;
+      Free.layout();
+      const r = stack.getBoundingClientRect();
+      if (r.top < 0 || r.top > innerHeight * 0.6) window.scrollTo({ top: window.scrollY + r.top - 96, behavior: "smooth" });
+    });
+  }
+
+  function close(then) {
+    if (!active || busy) return;
+    busy = true;
+    const { stack, panel, freeItem } = active;
     const d = design().flipDuration;
     const pile = stack.querySelector(".stack__pile");
-    const imgs = [...grid.querySelectorAll(".stack__img")];
 
-    const state = Flip.getState(imgs);
+    const state = Flip.getState(movers(stack));
+    [...panel.querySelectorAll(".stack__img")].forEach((img) => pile.appendChild(img));
+    panel.remove();
+    stack.classList.remove("is-open");
+    stack.setAttribute("aria-expanded", "false");
+    if (freeItem) freeItem.classList.remove("has-panel");
     document.documentElement.classList.add("is-flipping");
     stack.classList.add("is-returning");
-    imgs.forEach((img) => pile.appendChild(img));
+    Free.setExpanded(null);
 
-    gsap.to(".unstack__head > *", { yPercent: -110, duration: d * 0.4, ease: "expo.in" });
-    gsap.to(bgEl, { clipPath: "inset(0% 0% 100% 0%)", duration: d * 0.7, ease: "expo.inOut" });
-    Flip.from(state, {
-      duration: d,
-      ease: "expo.inOut",
-      stagger: { each: Math.min(0.03, 0.4 / imgs.length), from: "end" },
-      absolute: true,
-      onComplete: () => {
-        overlay.classList.remove("is-open");
-        overlay.setAttribute("aria-hidden", "true");
-        document.documentElement.classList.remove("is-locked", "is-flipping");
-        stack.classList.remove("is-returning");
-        active = null;
-        busy = false;
-        stack.focus({ preventScroll: true });
-      }
+    animate(state, d, () => {
+      stack.classList.remove("is-returning");
+      document.documentElement.classList.remove("is-flipping");
+      active = null;
+      busy = false;
+      Free.layout();
+      if (then) then();
     });
   }
 
-  closeBtn.addEventListener("click", close);
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !Lightbox.isOpen()) close();
+  });
+
+  // ---------- Lightbox: one photo, large ----------
+  const Lightbox = (function () {
+    let box = null, list = [], index = 0, from = null;
+
+    function build() {
+      box = document.createElement("div");
+      box.className = "lightbox";
+      box.innerHTML = `
+        <div class="lightbox__bg"></div>
+        <img class="lightbox__img" alt="">
+        <button type="button" class="lightbox__btn lightbox__close" aria-label="Uždaryti">${ICONS.close}</button>
+        <button type="button" class="lightbox__btn lightbox__prev" aria-label="Ankstesnė">${ICONS.chevronLeft}</button>
+        <button type="button" class="lightbox__btn lightbox__next" aria-label="Kita">${ICONS.chevronRight}</button>`;
+      document.body.appendChild(box);
+      box.querySelector(".lightbox__close").addEventListener("click", hide);
+      box.querySelector(".lightbox__bg").addEventListener("click", hide);
+      box.querySelector(".lightbox__prev").addEventListener("click", () => step(-1));
+      box.querySelector(".lightbox__next").addEventListener("click", () => step(1));
+      box.querySelector(".lightbox__img").addEventListener("click", hide);
+    }
+
+    // Animate the big image from / to the thumbnail's rectangle
+    function fly(img, rect, reverse, done) {
+      const r = img.getBoundingClientRect();
+      const sx = rect.width / r.width, sy = rect.height / r.height;
+      const dx = rect.left + rect.width / 2 - (r.left + r.width / 2);
+      const dy = rect.top + rect.height / 2 - (r.top + r.height / 2);
+      const small = { x: dx, y: dy, scaleX: sx, scaleY: sy };
+      const big = { x: 0, y: 0, scaleX: 1, scaleY: 1 };
+      gsap.fromTo(img, reverse ? big : small, Object.assign({}, reverse ? small : big, { duration: 0.6, ease: "expo.inOut", onComplete: done }));
+    }
+
+    function show(i) {
+      index = (i + list.length) % list.length;
+      const img = box.querySelector(".lightbox__img");
+      img.src = list[index].src;
+      img.alt = list[index].alt;
+      box.classList.toggle("is-single", list.length < 2);
+      return img;
+    }
+
+    function open(thumb) {
+      if (!box) build();
+      list = [...thumb.parentElement.querySelectorAll(".stack__img")];
+      from = thumb;
+      const img = show(list.indexOf(thumb));
+      box.classList.add("is-open");
+      document.documentElement.classList.add("is-locked");
+      gsap.fromTo(box.querySelector(".lightbox__bg"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 });
+      gsap.fromTo(box.querySelectorAll(".lightbox__btn"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4, delay: 0.3 });
+      const go = () => fly(img, thumb.getBoundingClientRect(), false);
+      img.complete && img.naturalWidth ? go() : img.addEventListener("load", go, { once: true });
+    }
+
+    function step(dir) {
+      const img = box.querySelector(".lightbox__img");
+      gsap.to(img, { autoAlpha: 0, x: -dir * 40, duration: 0.2, onComplete: () => {
+        show(index + dir);
+        from = list[index];
+        gsap.fromTo(img, { autoAlpha: 0, x: dir * 40 }, { autoAlpha: 1, x: 0, duration: 0.35, ease: "expo.out" });
+      } });
+    }
+
+    function hide() {
+      if (!box || !box.classList.contains("is-open")) return;
+      const img = box.querySelector(".lightbox__img");
+      gsap.to(box.querySelectorAll(".lightbox__btn"), { autoAlpha: 0, duration: 0.2 });
+      gsap.to(box.querySelector(".lightbox__bg"), { autoAlpha: 0, duration: 0.5, delay: 0.15 });
+      const finish = () => {
+        box.classList.remove("is-open");
+        gsap.set(img, { clearProps: "all" });
+        document.documentElement.classList.remove("is-locked");
+      };
+      if (from && from.isConnected) fly(img, from.getBoundingClientRect(), true, finish);
+      else gsap.to(img, { autoAlpha: 0, duration: 0.3, onComplete: finish });
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (!box || !box.classList.contains("is-open")) return;
+      if (e.key === "Escape") hide();
+      if (e.key === "ArrowLeft") step(-1);
+      if (e.key === "ArrowRight") step(1);
+    });
+
+    return { open, hide, isOpen: () => !!box && box.classList.contains("is-open") };
+  })();
 
   window.Stacks = {
     render,
     bind,
     isOpen: () => !!active,
-    // Called on route change: put images back without animation
+    // Called on route change: the DOM is about to be replaced, just forget the open card
     reset() {
+      Lightbox.hide();
       if (!active) return;
-      gsap.killTweensOf(bgEl);
-      overlay.classList.remove("is-open");
-      document.documentElement.classList.remove("is-locked", "is-flipping");
-      grid.innerHTML = "";
+      Free.setExpanded(null);
+      document.documentElement.classList.remove("is-flipping");
       active = null;
       busy = false;
     }

@@ -117,7 +117,7 @@
           <div class="tl__body"><span class="tl__title${long}">${linkify(esc(e.title))}</span>${e.detail ? `<span class="tl__detail">${linkify(esc(e.detail)).replace(/\n/g, "<br>")}</span>` : ""}${subItems(e.items)}</div>
         </li>`;
       }).join("");
-      const toggle = n > LIMIT ? `<button type="button" class="tl__toggle" data-tl-toggle data-count="${n}">Rodyti visus (${n}) ↓</button>` : "";
+      const toggle = n > LIMIT ? `<button type="button" class="tl__toggle" data-tl-toggle data-count="${n}">Rodyti visus (${n}) ${ICONS.arrowDown}</button>` : "";
       return `<section class="block block--timeline reveal"${sid}>${head}<div class="tl-wrap"><ol class="tl${toggle ? " is-collapsed" : ""}">${rows}</ol>${toggle}</div></section>`;
     }
     if (b.type === "video") {
@@ -129,8 +129,7 @@
     }
     if (b.type === "stacks") {
       if (!(b.groups || []).some((g) => (g.images || []).length)) return "";
-      const html = Stacks.render(b.groups || [], ctx.groupOffset);
-      ctx.groupOffset += (b.groups || []).length;
+      const html = Stacks.render(b.groups || []);
       return `<section class="block block--stacks reveal"${sid}>${head}${html}</section>`;
     }
     return "";
@@ -170,7 +169,7 @@
         <section class="hero hero--page">
           <p class="hero__kicker">404</p>
           <h1 class="hero__title">Nėra</h1>
-          <p class="hero__lede">Tokio puslapio nėra — arba nuoroda pasikeitė. <a href="/" data-link>Į pradžią →</a></p>
+          <p class="hero__lede">Tokio puslapio nėra — arba nuoroda pasikeitė. <a href="/" data-link>Į pradžią ${ICONS.arrowRight}</a></p>
         </section>`;
       return afterRender();
     }
@@ -178,7 +177,7 @@
     document.title = page.slug ? `${page.title} — ${site.name}` : site.name;
     const [first, ...rest] = site.name.split(/\s+/);
     const free = page.layout === "free";
-    const ctx = { i: 0, groupOffset: 0, free };
+    const ctx = { i: 0, free };
     const sections = (page.blocks || [])
       .map((b, i) => {
         const empty = b.type === "stacks" && !(b.groups || []).some((g) => (g.images || []).length);
@@ -218,7 +217,7 @@
            <div class="hero__aside">
              <p class="hero__role">${esc(site.role)}</p>
              ${page.intro ? `<p class="hero__lede">${esc(page.intro)}</p>` : ""}
-             <p class="hero__scroll">Slink žemyn ↓</p>
+             <p class="hero__scroll">Slink žemyn ${ICONS.arrowDown}</p>
            </div>
          </section>`;
 
@@ -232,7 +231,7 @@
       <footer class="foot reveal" id="kontaktai">
         <p class="foot__label">Rašyk</p>
         <a class="foot__mail" href="mailto:${esc(site.email)}">${esc(site.email)}</a>
-        ${links.length ? `<ul class="foot__big">${links.map((l) => `<li><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}<span aria-hidden="true">↗</span></a></li>`).join("")}</ul>` : ""}
+        ${links.length ? `<ul class="foot__big">${links.map((l) => `<li><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}<span>${ICONS.arrowUpRight}</span></a></li>`).join("")}</ul>` : ""}
         <div class="foot__row"><span>© ${new Date().getFullYear()} ${esc(site.name)}</span></div>
       </footer>`;
   }
@@ -270,7 +269,7 @@
     if (tl) {
       const list = tl.previousElementSibling;
       const open = list.classList.toggle("is-collapsed") === false;
-      tl.textContent = open ? "Suskleisti ↑" : `Rodyti visus (${tl.dataset.count}) ↓`;
+      tl.innerHTML = open ? `Suskleisti ${ICONS.arrowUp}` : `Rodyti visus (${tl.dataset.count}) ${ICONS.arrowDown}`;
       if (!open) tl.closest(".block").scrollIntoView({ behavior: "smooth", block: "start" });
       Free.layout();
       return;

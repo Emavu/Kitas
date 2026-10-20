@@ -104,7 +104,7 @@
       <div class="adm__top">
         <strong class="adm__brand">Redaktorius</strong>
         <span class="adm__status">Locked</span>
-        <button class="adm__x" data-act="close" type="button" aria-label="Close">✕</button>
+        <button class="adm__x" data-act="close" type="button" aria-label="Close">${ICONS.close}</button>
       </div>
       <form class="adm__body adm__login" data-login autocomplete="on">
         <fieldset class="adm__group"><legend>Prisijungti</legend>
@@ -154,7 +154,7 @@
         <strong class="adm__brand">Redaktorius</strong>
         <span class="adm__status" id="adm-status">${Store.hasDraft() ? "Draft saved" : "Published"}</span>
         <button class="adm__logout" data-act="logout" type="button">Atsijungti</button>
-        <button class="adm__x" data-act="close" type="button" aria-label="Close">✕</button>
+        <button class="adm__x" data-act="close" type="button" aria-label="Close">${ICONS.close}</button>
       </div>
       <div class="adm__tabs">
         ${["design", "pages", "site", "publish"].map((t) => `<button type="button" data-tab="${t}" class="${t === tab ? "is-on" : ""}">${t}</button>`).join("")}
@@ -251,11 +251,12 @@
         body += (b.groups || []).map((g, gi) => {
           const gp = `${bp}.groups.${gi}`;
           return `<div class="adm__sub">
-            <div class="adm__row">${field("Group title", `${gp}.title`)}${field("Year", `${gp}.year`)}</div>
+            <div class="adm__row">${field("Group title", `${gp}.title`)}${field("Year / place", `${gp}.year`)}</div>
+            ${field("Description — shown above the photos when the stack is opened (optional)", `${gp}.text`, { area: true, rows: 5 })}
             ${field(`Images — one URL per line (${(g.images || []).length})`, `${gp}.images`, { area: true, rows: 4, lines: true })}
             <div class="adm__mini">
               <button type="button" data-act="ph" data-path="${gp}">+ 4 placeholders</button>
-              ${gi > 0 ? `<button type="button" data-act="g-up" data-path="${bp}" data-i="${gi}">↑</button>` : ""}
+              ${gi > 0 ? `<button type="button" data-act="g-up" data-path="${bp}" data-i="${gi}" aria-label="Move up">${ICONS.arrowUp}</button>` : ""}
               <button type="button" data-act="g-del" data-path="${bp}" data-i="${gi}">Delete group</button>
             </div>
           </div>`;
@@ -266,8 +267,8 @@
         <div class="adm__blockhead">
           <span>${String(bi + 1).padStart(2, "0")} · ${b.type}</span>
           <span class="adm__mini">
-            ${bi > 0 ? `<button type="button" data-act="b-up" data-i="${bi}">↑</button>` : ""}
-            ${bi < p.blocks.length - 1 ? `<button type="button" data-act="b-down" data-i="${bi}">↓</button>` : ""}
+            ${bi > 0 ? `<button type="button" data-act="b-up" data-i="${bi}" aria-label="Move up">${ICONS.arrowUp}</button>` : ""}
+            ${bi < p.blocks.length - 1 ? `<button type="button" data-act="b-down" data-i="${bi}" aria-label="Move down">${ICONS.arrowDown}</button>` : ""}
             <button type="button" data-act="b-del" data-i="${bi}">Delete</button>
           </span>
         </div>${body}</div>`;
@@ -275,7 +276,7 @@
 
     return `
       <div class="adm__pagelist">
-        ${pages.map((o, i) => `<button type="button" data-page="${i}" class="${i === pageIdx ? "is-on" : ""}">${esc(o.title || "(untitled)")}${o.hidden ? " ◌" : ""}</button>`).join("")}
+        ${pages.map((o, i) => `<button type="button" data-page="${i}" class="${i === pageIdx ? "is-on" : ""}">${esc(o.title || "(untitled)")}${o.hidden ? " " + ICONS.hidden : ""}</button>`).join("")}
         <button type="button" data-act="p-add">+ New page</button>
       </div>
 
@@ -300,7 +301,7 @@
             <option value="free" ${p.layout === "free" ? "selected" : ""}>Free — drag blocks anywhere (like Figma)</option>
           </select></label>
         ${p.layout === "free" ? `<p class="adm__note">On the page: <b>drag</b> a block to move it, drag the
-          <b>yellow corner</b> to resize, <b>↑ ↓</b> on its label changes what's in front. Arrow keys nudge the
+          <b>yellow corner</b> to resize, <b>the arrows</b> on its label changes what's in front. Arrow keys nudge the
           selected block (Shift = bigger steps). On phones blocks stack top-to-bottom.</p>` : ""}
       </fieldset>
 
@@ -339,7 +340,7 @@
       ${(D().site.links || []).map((l, i) => `<div class="adm__sub">
         <div class="adm__row">${field("Label", `site.links.${i}.label`)}${field("URL", `site.links.${i}.url`)}</div>
         <div class="adm__mini">
-          ${i > 0 ? `<button type="button" data-act="l-up" data-i="${i}">↑</button>` : ""}
+          ${i > 0 ? `<button type="button" data-act="l-up" data-i="${i}" aria-label="Move up">${ICONS.arrowUp}</button>` : ""}
           <button type="button" data-act="l-del" data-i="${i}">Delete link</button>
         </div></div>`).join("") || `<p class="adm__note">No links yet.</p>`}
       <button type="button" class="adm__btn adm__btn--ghost" data-act="l-add">+ Add link</button>
@@ -423,7 +424,7 @@
       if (/\.bg\./.test(t.dataset.bind)) return Store.change("design");
       if (/^pages\.\d+\.title$/.test(t.dataset.bind)) {
         const btn = panel.querySelector(`[data-page="${pageIdx}"]`);
-        if (btn) btn.textContent = (v || "(untitled)") + (pages()[pageIdx].hidden ? " ◌" : "");
+        if (btn) btn.innerHTML = esc(v || "(untitled)") + (pages()[pageIdx].hidden ? " " + ICONS.hidden : "");
       }
       return Store.change("content");
     }

@@ -7,6 +7,7 @@
   const MOBILE = 720;
   let canvas = null, page = null, editing = false, selected = null;
   let ro = null, raf = 0;
+  let expanded = null; // { el, from }: an opened gallery card — full width; items from `from` down move below it
 
   function boxOf(key) {
     if (key === "title" || key === "intro") return page.boxes[key];
@@ -31,8 +32,8 @@
       ${inner}
       <div class="free__ui">
         <span class="free__tag">${type}
-          <button type="button" data-z="1" title="Bring forward">↑</button>
-          <button type="button" data-z="-1" title="Send back">↓</button>
+          <button type="button" data-z="1" title="Bring forward">${ICONS.arrowUp}</button>
+          <button type="button" data-z="-1" title="Send back">${ICONS.arrowDown}</button>
         </span>
         <span class="free__resize" data-resize></span>
       </div>
@@ -58,12 +59,22 @@
         .forEach(({ el }, i) => { el.style.cssText = `order:${i}`; });
       return;
     }
+    const exp = expanded && expanded.el.isConnected ? expanded : null;
+    let shift = 0;
+    if (exp) {
+      exp.el.style.left = "0%";
+      exp.el.style.width = "100%";
+      shift = exp.el.offsetHeight + SNAP * 4;
+    }
     let bottom = 0;
     items.forEach((el) => {
       const b = boxOf(el.dataset.key);
-      el.style.left = b.x + "%";
-      el.style.top = (b.y / 100) * W + "px";
-      el.style.width = b.w + "%";
+      let top = (b.y / 100) * W;
+      const isExp = exp && el === exp.el;
+      if (exp && !isExp && top >= exp.from) top += shift;
+      el.style.left = isExp ? "0%" : b.x + "%";
+      el.style.top = top + "px";
+      el.style.width = isExp ? "100%" : b.w + "%";
       el.style.height = b.h ? (b.h / 100) * W + "px" : "";
       el.style.zIndex = b.z || 2;
       el.style.order = "";
@@ -81,6 +92,7 @@
 
   function mount(p) {
     page = p;
+    expanded = null;
     canvas = document.getElementById("free");
     ro && ro.disconnect();
     if (!canvas) return;
@@ -178,5 +190,18 @@
     Store.change("layout");
   });
 
-  window.Free = { ensureBoxes, render, mount, setEditing, layout: schedule };
+  // Open a card in place (el) or close it again (null); runs synchronously so Flip can measure
+  // closedHeight: the card's height before it opened (things in its row start at most half of it higher)
+  function setExpanded(el, closedHeight = 0) {
+    if (el && canvas && canvas.contains(el)) {
+      const W = canvas.clientWidth;
+      const top = (boxOf(el.dataset.key).y / 100) * W;
+      expanded = { el, from: top - closedHeight / 2 };
+    } else {
+      expanded = null;
+    }
+    layout();
+  }
+
+  window.Free = { ensureBoxes, render, mount, setEditing, setExpanded, layout: schedule };
 })();

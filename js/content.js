@@ -20,111 +20,174 @@ window.SITE_DEFAULTS = {
     "twist": 1.4,
     "particleSize": 1.1,
     "trail": 0.19,
-    "glow": 0.46,
+    "glow": 0.93,
     "centerX": 0.44,
     "centerY": 0.32,
     "radius": 0.74,
-    "textScale": 0.81,
+    "textScale": 0.87,
     "stackRotation": 3,
     "stackSpread": 0,
     "flipDuration": 1.85,
     "gridColumns": 5,
     "nameFont": "sztos-variable",
     "customFont": null,
-    "colorBg": "#f3f0e8",
-    "colorInk": "#111111",
-    "colorDim": "#55514a",
-    "colorLine": "#cfc8bb",
-    "colorAccent": "#111111",
-    "colorAccent2": "#b3261e",
-    "colorName1": "#111111",
-    "colorName2": "#111111",
-    "particleOuter": "#111111",
-    "particleCore": "#111111",
-    "vortexStyle": "ink",
+    "colorBg": "#03050f",
+    "colorInk": "#e6ecff",
+    "colorDim": "#8a95b8",
+    "colorLine": "#1f2a4d",
+    "colorAccent": "#7cc4ff",
+    "colorAccent2": "#ff7a59",
+    "colorName1": "#e6ecff",
+    "colorName2": "#7cc4ff",
+    "particleOuter": "#2a3cff",
+    "particleCore": "#b8f0ff",
+    "vortexStyle": "particles",
     "drips": 0.16,
     "dripLength": 1.15
   },
   "pages": [
     {
       "slug": "",
-      "title": "Darbai",
+      "title": "Kūryba",
       "hidden": false,
-      "intro": "Poezija, gatvės menas, fotografija ir viskas tarp jų. Nuotraukoms aspausk ant krūvelės — ji išsiskleis.",
+      "intro": "miesto sienose",
       "blocks": [
         {
           "type": "stacks",
-          "heading": "Kūryba",
+          "heading": "",
           "groups": [
             {
-              "title": "Sienų tapyba",
-              "year": "2026",
+              "title": "kur visa taps įmanoma",
+              "year": "Nepriklausomybės a. 5B, Kaunas, ",
               "images": [
-                "https://picsum.photos/seed/0dav4-0/800/1000",
-                "https://picsum.photos/seed/0dav4-1/1000/700",
-                "https://picsum.photos/seed/0dav4-2/800/800",
-                "https://picsum.photos/seed/0dav4-3/700/1000",
-                "https://picsum.photos/seed/0dav4-4/1200/800",
-                "https://picsum.photos/seed/0dav4-5/800/1000",
-                "https://picsum.photos/seed/0aahm-0/800/1000",
-                "https://picsum.photos/seed/0aahm-1/1000/700",
-                "https://picsum.photos/seed/0aahm-2/800/800",
-                "https://picsum.photos/seed/0aahm-3/700/1000"
-              ]
-            },
-            {
-              "title": "scenos menas",
-              "year": "",
-              "images": [
-                "https://picsum.photos/seed/8shmd-3/700/1000",
-                "https://picsum.photos/seed/8shmd-4/1200/800",
-                "https://picsum.photos/seed/8shmd-5/800/1000"
-              ]
-            },
-            {
-              "title": "Žodinė kūryba",
-              "year": "",
-              "images": [
-                "https://picsum.photos/seed/fbcq9-0/800/1000",
-                "https://picsum.photos/seed/fbcq9-1/1000/700",
-                "https://picsum.photos/seed/fbcq9-2/800/800",
-                "https://picsum.photos/seed/fbcq9-3/700/1000",
-                "https://picsum.photos/seed/fbcq9-4/1200/800",
-                "https://picsum.photos/seed/fbcq9-5/800/1000"
-              ]
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792401132/FB_IMG_1780038246063.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792401203/DSC03743_%C5%BEr.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792401190/DSC03773_%C5%BEr.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792407373/IMG-20260530-WA0002.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792407395/20260526_180213.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792407395/20260525_171624.jpg"
+              ],
+              "text": "Fantastinė Kauno panorama, kurią jungia kadaise ilgiausiu pasaulyje vadintas Aleksoto tiltas. Ši istorija mena XIX a., kai Aleksote galiojo Grigaliaus kalendorius, o Kauno pusėje buvo pripažįstamas kitas, Julijaus kalendorius. Laiko skaičiavimas skyrėsi per 13 dienų. Taigi, tai buvo vienintelis tiltas, kuriam pereiti reikėjo beveik dviejų savaičių.\n\nPiešiniu siekėm ne tik atspindėti šią istoriją, bet ir užsiminti apie laiko sąlygiškumą. Kad laiko skaičiavimą išradome patys ir jis egzistuoja tik mūsų mintyse. Pirma sugalvojame, tada patikime ir galiausiai -"
             }
           ],
           "box": {
-            "x": 34.56,
-            "y": 64.81,
-            "w": 64.09,
+            "x": 1.73,
+            "y": 47.3,
+            "w": 19.03,
             "z": 3
           }
         },
         {
-          "type": "video",
-          "heading": "Video",
-          "url": "https://www.youtube.com/watch?v=uqn7BQ-ZXBc",
+          "type": "stacks",
+          "heading": "",
           "box": {
-            "x": 0.72,
-            "y": 28.08,
-            "w": 50,
+            "x": 51.33,
+            "y": 81.9,
+            "w": 19.61,
             "z": 2
-          }
+          },
+          "groups": [
+            {
+              "title": "Žaliakalnio kultūros draustinis",
+              "year": "2026",
+              "images": [
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792402914/734932317_10163023277477966_2385772177588789009_n.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792402913/734528770_10163023276767966_11891988066624685_n.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792402913/735909119_10163023276812966_8575017459039505364_n.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792402922/20260619_203601.jpg"
+              ],
+              "text": "Sveiki atvykę į Žaliakalnio kultūros draustinį.\n\nPriešais jus - Siena, pasakojanti vietines istorijas. Ar žinote, kad vienas svarbiausių žmogaus laimės faktorių yra bendruomeniškumas? Tame tarpe ir kaimynystė.  Nėra vienintelis teisingo atsakymo kas tai. \nNeabejotinai,  gera kaimynystė kaip ir ši Siena susideda iš gabaliukų. O šitie gabaliukai, tai  šios sienos idėjos autoriaus Domo ir menininkų Ievos ir Ramūno  parinkti. Matote žemėlapį, o jame skaičiukus, kuriuos taip pat rasite ir  prie piešinių.  Kol klausysitės, pasigalvokite,  o ką jūs galėtumėte papasakoti apie savo rajoną?\nŽaliakalnio visa teritorija prie Kauno miesto prijungta tik 1919 metais. Tai buvo stipriai lapuočiais apaugusi vieta, kurios  dalis  - Ąžuolynas ir dabar laikomas didžiausiu"
+            }
+          ]
+        },
+        {
+          "type": "stacks",
+          "heading": "",
+          "box": {
+            "x": 24.22,
+            "y": 46.14,
+            "w": 20.19,
+            "z": 2
+          },
+          "groups": [
+            {
+              "title": "gyliai",
+              "year": "2026",
+              "images": [
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792401594/20200818_184361_RT.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792401811/Ram%C5%ABnui-5_%C5%BEr.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792401515/ie%C5%A1kok_ka%C5%BEko_2.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792401527/IMG_20220618_181350.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792401491/ie%C5%A1kok_ka%C5%BEko_1.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792401527/IMG_20220618_181350.jpg"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "stacks",
+          "heading": "",
+          "box": {
+            "x": 46.72,
+            "y": 46.14,
+            "w": 20.19,
+            "z": 2
+          },
+          "groups": [
+            {
+              "title": "atspindžiai",
+              "year": "2026",
+              "images": [
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792403748/IMG_20220916_171014.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792480197/IMG_20220916_171139.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792403685/IMG_20220905_085605.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792403312/IMG_20220905_085310.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792403308/IMG_20220905_084829.jpg"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "stacks",
+          "heading": "",
+          "box": {
+            "x": 70.37,
+            "y": 47.3,
+            "w": 19.03,
+            "z": 2
+          },
+          "groups": [
+            {
+              "title": "saulė ir kitos šypsenėlės",
+              "year": "2026",
+              "images": [
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792400818/IMG_20220923_152306.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792480361/planet%C5%B3_pie%C5%A1iniai_2_RT.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792480369/IMG_20220923_152014_RT.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792480526/20240919_141758.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792480526/20240919_141734.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792480600/20211117_154425_RT.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792480842/20211009_132200_RT.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792480843/20211008_173802.jpg"
+              ]
+            }
+          ]
         }
       ],
-      "bg": {},
+      "bg": {
+        "particlesOff": false
+      },
       "layout": "free",
       "boxes": {
         "title": {
-          "x": 1.99,
-          "y": 5.96,
+          "x": 0,
+          "y": 5.19,
           "w": 70,
           "z": 3
         },
         "intro": {
-          "x": 60.49,
-          "y": 23.76,
+          "x": 1.15,
+          "y": 20.76,
           "w": 37.92,
           "z": 3
         }
