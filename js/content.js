@@ -50,11 +50,11 @@ window.SITE_DEFAULTS = {
       "slug": "",
       "title": "Kūryba",
       "hidden": false,
-      "intro": "miesto sienose",
+      "intro": "",
       "blocks": [
         {
           "type": "stacks",
-          "heading": "",
+          "heading": "Gatvės kūryba",
           "groups": [
             {
               "title": "kur visa taps įmanoma",
@@ -71,8 +71,8 @@ window.SITE_DEFAULTS = {
             }
           ],
           "box": {
-            "x": 1.73,
-            "y": 47.3,
+            "x": 0.94,
+            "y": 32.98,
             "w": 19.03,
             "z": 3
           }
@@ -81,8 +81,8 @@ window.SITE_DEFAULTS = {
           "type": "stacks",
           "heading": "",
           "box": {
-            "x": 51.33,
-            "y": 81.9,
+            "x": 27.33,
+            "y": 87.63,
             "w": 19.61,
             "z": 2
           },
@@ -104,8 +104,31 @@ window.SITE_DEFAULTS = {
           "type": "stacks",
           "heading": "",
           "box": {
-            "x": 24.22,
-            "y": 46.14,
+            "x": 28.27,
+            "y": 46.17,
+            "w": 20.19,
+            "z": 2
+          },
+          "groups": [
+            {
+              "title": "atspindžiai",
+              "year": "2026",
+              "images": [
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792403748/IMG_20220916_171014.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792480197/IMG_20220916_171139.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792403685/IMG_20220905_085605.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792403312/IMG_20220905_085310.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792403308/IMG_20220905_084829.jpg"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "stacks",
+          "heading": "",
+          "box": {
+            "x": 0.94,
+            "y": 89.52,
             "w": 20.19,
             "z": 2
           },
@@ -128,31 +151,8 @@ window.SITE_DEFAULTS = {
           "type": "stacks",
           "heading": "",
           "box": {
-            "x": 46.72,
-            "y": 46.14,
-            "w": 20.19,
-            "z": 2
-          },
-          "groups": [
-            {
-              "title": "atspindžiai",
-              "year": "2026",
-              "images": [
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792403748/IMG_20220916_171014.jpg",
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792480197/IMG_20220916_171139.jpg",
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792403685/IMG_20220905_085605.jpg",
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792403312/IMG_20220905_085310.jpg",
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792403308/IMG_20220905_084829.jpg"
-              ]
-            }
-          ]
-        },
-        {
-          "type": "stacks",
-          "heading": "",
-          "box": {
-            "x": 70.37,
-            "y": 47.3,
+            "x": 56.54,
+            "y": 45.23,
             "w": 19.03,
             "z": 2
           },
