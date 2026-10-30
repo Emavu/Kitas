@@ -31,16 +31,16 @@ window.SITE_DEFAULTS = {
     "gridColumns": 5,
     "nameFont": "sztos-variable",
     "customFont": null,
-    "colorBg": "#03050f",
-    "colorInk": "#e6ecff",
-    "colorDim": "#8a95b8",
-    "colorLine": "#1f2a4d",
-    "colorAccent": "#7cc4ff",
-    "colorAccent2": "#ff7a59",
-    "colorName1": "#e6ecff",
-    "colorName2": "#7cc4ff",
-    "particleOuter": "#2a3cff",
-    "particleCore": "#b8f0ff",
+    "colorBg": "#050805",
+    "colorInk": "#ecffe0",
+    "colorDim": "#9bb88a",
+    "colorLine": "#26401d",
+    "colorAccent": "#c6ff2e",
+    "colorAccent2": "#ff3cac",
+    "colorName1": "#ecffe0",
+    "colorName2": "#c6ff2e",
+    "particleOuter": "#3dff8b",
+    "particleCore": "#f4ff9e",
     "vortexStyle": "particles",
     "drips": 0.16,
     "dripLength": 1.15
@@ -48,13 +48,13 @@ window.SITE_DEFAULTS = {
   "pages": [
     {
       "slug": "",
-      "title": "Kūryba",
+      "title": "kūryba",
       "hidden": false,
       "intro": "",
       "blocks": [
         {
           "type": "stacks",
-          "heading": "Gatvės kūryba",
+          "heading": "miesto sienose",
           "groups": [
             {
               "title": "kur visa taps įmanoma",
@@ -67,108 +67,205 @@ window.SITE_DEFAULTS = {
                 "https://res.cloudinary.com/bxhejjp3/image/upload/v1792407395/20260526_180213.jpg",
                 "https://res.cloudinary.com/bxhejjp3/image/upload/v1792407395/20260525_171624.jpg"
               ],
-              "text": "Fantastinė Kauno panorama, kurią jungia kadaise ilgiausiu pasaulyje vadintas Aleksoto tiltas. Ši istorija mena XIX a., kai Aleksote galiojo Grigaliaus kalendorius, o Kauno pusėje buvo pripažįstamas kitas, Julijaus kalendorius. Laiko skaičiavimas skyrėsi per 13 dienų. Taigi, tai buvo vienintelis tiltas, kuriam pereiti reikėjo beveik dviejų savaičių.\n\nPiešiniu siekėm ne tik atspindėti šią istoriją, bet ir užsiminti apie laiko sąlygiškumą. Kad laiko skaičiavimą išradome patys ir jis egzistuoja tik mūsų mintyse. Pirma sugalvojame, tada patikime ir galiausiai -"
+              "text": "\nkartu su dailininku Dovydu Sabaliausku-Atlikta\n\nTaip parašyta ant sienos viename iš kiemų netoli soboro (Nepriklausomybės a. 5B). Tai yra naujas sienų tapybos darbas \"Kur viskas taps įmanoma\". Fantastinė Kauno panorama, kurią jungia kadaise ilgiausiu pasaulyje vadintas Aleksoto tiltas. Ši istorija mena XIX a., kai Aleksote galiojo Grigaliaus kalendorius, o Kauno pusėje buvo pripažįstamas kitas, Julijaus kalendorius. Laiko skaičiavimas skyrėsi per 13 dienų. Taigi, tai buvo vienintelis pasaulio tiltas, kuriam pereiti reikėjo beveik dviejų savaičių.\n\nPiešiniu siekėm ne tik atspindėti šią istoriją, bet ir užsiminti apie laiko sąlygiškumą. Kad laiko skaičiavimą išradome patys ir jis egzistuoja tik mūsų mintyse. Pirma sugalvojame, tada patikime ir galiausiai - visiems dėl to sutarus - mintis tampa tikrove.\n\nVisa, ką mūsų civilizacija sukūrė, pirmiau buvo pagalvota. Galime stebėti, kaip tikrove tampa kadaise užrašytos visai nerealistinės idėjos, kaip skraidantis kilimas, septinmyliai batai, stebuklingas, viską parodantis snieguolės veidrodis ar kelią rodanti žvakė iš Brolių Grimų pasakų.. Kadaise tai buvo fantastika, magija, o šiandien visai nebestebina kasdien skraidantys lėktuvai, automobiliai ar išmanieji telefonai, atsakantys į bet kokį klausimą, kaip tas stebuklingas snieguolės veidrodis. \n\nDauguma piešinio elementų nebuvo suplanuoti iš anksto. Piešinyje nugulė idėjos iš pokalbių su praeiviais, kurie stabteli pasidalinti mintimis. Kai kurie įsitraukė į patį piešimą ir prisidėjo sukurdami paukščius bei kelis kitus piešinio elementus. Labiausiai džiugina, kad šis darbas tapo kvietimu, proga sustoti ir pasidalinti nekasdieniškomis mintimis, pasikalbėti gilesnėmis temomis. Pasiūlyti pozityvumo, įkvėpimo šio kiemo praeiviui - tokį sienos puošimo tikslą matė ir namo savininkai, todėl kūrybinio proceso metu greta sienos pastatėme staliuką ir dvi, prisėsti kviečiančias kėdes. Šios \"Vieno staliuko kavinės\" lankytojai buvo vaišinami karštu gėrimu, užkandžiais. Galėjo vartyti kultūros žurnalo \"Nemunas\" dovanotą tekstų rinktinę, stebėti kūrybinį procesą arba į jį įsitraukti. Gyvi pokalbiai, bendrystė, tai, kas mus jungia. \n\nPiešinio atsiradimo istorija savotiškai atspindi ir pačio namo statybos istoriją. Taip sako iš savo tėčio perimusi ir toliau viešbučio verslą vystanti vietos savininkė Nora:\n\n\"Šio muralo istorija prasidėjo nuo nedidelio animacinio filmuko veikėjos piešinio su užrašu „Visa ką manai yra įmanoma“. Mintis mums pasirodė labai artima.\nMano tėvai šioje vietoje kuria nuo 1991 metų. Žiūrint į senas nuotraukas sunku patikėti, kiek viskas pasikeitė per tuos metus.\nMano tėtis visada turėjo labai aiškią viziją, ką nori čia sukurti. Net tada, kai aplink buvo statybos, seni pastatai, apsemtas kiemas ir daug neapibrėžtumo, jis matė galutinį rezultatą ir niekada neabejojo, kad vieną dieną jį pasieks. Dėka tikėjimo savo vizija, per daugiau nei tris dešimtmečius, daug darbo, atkaklumo ir tikėjimo savo idėja dėka, ta vizija tapo realybe.\nŽvelgiant į tai šiandien, atrodo, kad muralo žinutė natūraliai susijungė su mūsų šeimos istorija. Dėl to šis projektas mums turi ypatingą prasmę.\" \n\n\nKaip mylėsi - taip ir bus"
+            },
+            {
+              "title": "ieškok kažko",
+              "year": "",
+              "images": [
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792401491/ie%C5%A1kok_ka%C5%BEko_1.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792401515/ie%C5%A1kok_ka%C5%BEko_2.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792401594/20200818_184361_RT.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792401811/Ram%C5%ABnui-5_%C5%BEr.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792748548/IMG_20221204_193934_RT2_%C5%BEr.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792401527/IMG_20220618_181350.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792769907/naujesn%C4%97_laipt%C5%B3_kaukas_RT_%C5%BEr.jpg"
+              ],
+              "text": "Žengiant per bedugnę galima pasakyti, kad tai „tik ėjimas“. Bet be „tikėjimo“ bedugnės nepereisi."
+            },
+            {
+              "title": "Žaliakalnio kultūros draustinyje",
+              "year": "",
+              "images": [
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792749109/20260619_203455.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792402914/734932317_10163023277477966_2385772177588789009_n.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792749121/20260619_203702.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792402913/734528770_10163023276767966_11891988066624685_n.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792749121/20260619_203702.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792402913/735909119_10163023276812966_8575017459039505364_n.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792402922/20260619_203601.jpg"
+              ],
+              "text": "Koks yra svarbiausias žmogaus laimės faktorius? \n\nŽaliakalnio teritorija prie Kauno miesto prijungta tik 1919 metais. Vieta buvo stipriai apaugusi lapuočiais, kurių nedidelis likutis - Ąžuolynas ir dabar laikomas didžiausiu Europos Ąžuolynu mieste.\nTai mena vietinės dailininkės M. Jasilionytės Žaliakalnio Ąžuolo iliustracija. viena iš sienoje vaizduojamų istorijų. \nSienoje norėjome atskleisti vietines asmenybes bei įdomybes. Tokias kaip prieš 30 metų Žemaičių gatvės gale gyvenusi beždžionė, milžiniškos Argentinos ir Brazilijos vėliavos, matomos tik iš paukščio skydžio, visus metus pildoma lesyklėlė ir pulkai vietinių žvirblių ir  daugiau panašių istorijų. \nŽaliakalnio kultūros draustinis mena ir šiuos menininkus:\nKajetonas Sklėrius –  dailininkas tapytojas, skulptorius pedagogas, šiais 2026 metais švenčiamos jo 150 gimimo metinėmis. Pats jis laikomas moderniosios lietuvių akvarelės pradininku. Gyvenęs ir Žaliakalnyje, o čia visai netoliese galite pasilabinti ir su jo sūnėnu.\nEdmundas Janušaitis – bardas, poetas – išleidęs dviženklį skaičių knygų, kurio poetų sodą aplanko ir ne viena ekskursija. O  kiekvienais metais, gegužės 14 dieną per Kalantines, visiems atveriami namų durys ir kviečiami eilėmis ir dainomis pažymėti šį visai Lietuvai svarbų įvykį.\nGediminas Pempė – taikomosios grafikos meistras, vadinamas šrifto virtuozu. Sukūrė per 360 knygų viršelių, pašto ženklus, ekslibrisus, plakatus ir atvirukus. Jam priklauso ir „Šviesos“ leidyklos logotipas – mokinukas su kuprine, nuo 1964-ųjų žingsniuojantis vadovėlių viršeliais.\nMargarita Jasilionytė - Kauno grafikė, Lietuvos dailininkų sąjungos narė. Kuria knygų iliustracijas ir maketus.\nGiedrius Kuprevičius – kompozitorius ir Kauno miesto vyriausiasis varpininkas, sukūręs vieną populiariausių Lietuvos miuziklų „Ugnies medžioklė su varovais“, o jo daina „Kregždės“ – viena žinomiausių šalyje. Nuo 1997 m. groja instrumentiniame trio „Žaliakalnio vilkai“. Kasmet liepos 6-ąją žaliakalniečiai pasitinka kompozitorių savo balkone kartu giedanti Tautišką giesmę.\nVytautas Eigirdas - tapytojas. Jo drobės, įkvėptos Biblijos, antikos mitų ir Ispanijos koridos, pulsuoja brutalumu, erotika ir vizionieriška įtampa. Personažai dinamiški, užfiksuoti fiziniame ar emociniame judesyje, dramoje, išgyvenime.\n\nGerai pažįstantys Lietuvos kultūros vardus šioje rinktinėje gali pasigesti ne vienos žinomos vietos asmenybės, Žaliakalnio gatvelėse daugiau istorijų nei galima aprėpti. Bet ne mažiau svarbu ir vieta būsimoms istorijoms :) "
+            },
+            {
+              "title": "vaikystės soduose",
+              "year": "",
+              "images": [
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792400818/IMG_20220923_152306.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792480361/planet%C5%B3_pie%C5%A1iniai_2_RT.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792480369/IMG_20220923_152014_RT.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792480526/20240919_141734.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792480526/20240919_141758.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792480600/20211117_154425_RT.jpg"
+              ]
             }
           ],
           "box": {
-            "x": 0.94,
-            "y": 32.98,
-            "w": 19.03,
+            "x": 24.22,
+            "y": 26.53,
+            "w": 61.14,
             "z": 3
+          }
+        },
+        {
+          "type": "video",
+          "heading": "Žodžiuose",
+          "url": "https://youtu.be/r_nqp1XCr2E",
+          "box": {
+            "x": 24.22,
+            "y": 60.56,
+            "w": 22.63,
+            "z": 2
           }
         },
         {
           "type": "stacks",
           "heading": "",
           "box": {
-            "x": 27.33,
-            "y": 87.63,
-            "w": 19.61,
+            "x": 71.4,
+            "y": 60.34,
+            "w": 28.6,
             "z": 2
           },
           "groups": [
             {
-              "title": "Žaliakalnio kultūros draustinis",
+              "title": "Eglė Žaislų Karalienė",
               "year": "2026",
               "images": [
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792402914/734932317_10163023277477966_2385772177588789009_n.jpg",
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792402913/734528770_10163023276767966_11891988066624685_n.jpg",
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792402913/735909119_10163023276812966_8575017459039505364_n.jpg",
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792402922/20260619_203601.jpg"
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792770953/%C4%85%C5%BEuolyno_bibliotekoj.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792771110/med%C5%BEio_klausymasis3.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792771001/20251221_134357_1.png"
               ],
-              "text": "Sveiki atvykę į Žaliakalnio kultūros draustinį.\n\nPriešais jus - Siena, pasakojanti vietines istorijas. Ar žinote, kad vienas svarbiausių žmogaus laimės faktorių yra bendruomeniškumas? Tame tarpe ir kaimynystė.  Nėra vienintelis teisingo atsakymo kas tai. \nNeabejotinai,  gera kaimynystė kaip ir ši Siena susideda iš gabaliukų. O šitie gabaliukai, tai  šios sienos idėjos autoriaus Domo ir menininkų Ievos ir Ramūno  parinkti. Matote žemėlapį, o jame skaičiukus, kuriuos taip pat rasite ir  prie piešinių.  Kol klausysitės, pasigalvokite,  o ką jūs galėtumėte papasakoti apie savo rajoną?\nŽaliakalnio visa teritorija prie Kauno miesto prijungta tik 1919 metais. Tai buvo stipriai lapuočiais apaugusi vieta, kurios  dalis  - Ąžuolynas ir dabar laikomas didžiausiu"
+              "text": "Tai pasaka apie draugų kelionę vingiuotu upeliu per pievas, kaimus ir miškus, ieškant naujos, gražios, laimingos ir įkvepiančios mūsų Eglės Žalčių Karalienės pasakos pabaigos.\nMielas Skaitytojau, galbūt tau, kaip ir pasakos piešėjai Gajai, Eglės Žalčių Karalienės pabaiga atrodo skaudi ir neteisinga. Juk galima kurti naują, laimingą pabaigą! O galbūt tu, kaip ir pasakos rašytojas Ramūnas, manai, kad ir gyvenimas kartais būna neteisingas – kaip tuomet sekti laimingas pasakas?\nLabai kviečiame su šiais ir kitais svarbiais klausimais nukeliauti į stebuklingąją giraitę, sutikti Baltąjį Senulį, sprukti nuo vandens slibino, klausytis kalbančių debesų, nugarmėti į besmegenio milžino skrandį bei patirti dar aibę nepaprastų nuotykių. Ir, žinoma, išmokti svarbias gyvenimo pamokas."
             }
           ]
         },
         {
-          "type": "stacks",
+          "type": "video",
           "heading": "",
+          "url": "https://youtu.be/DOlw_BUP3DU",
           "box": {
-            "x": 28.27,
-            "y": 46.17,
-            "w": 20.19,
+            "x": 47.77,
+            "y": 64.86,
+            "w": 22.12,
             "z": 2
+          }
+        },
+        {
+          "type": "stacks",
+          "heading": "Veiksme",
+          "box": {
+            "x": 24.14,
+            "y": 86.49,
+            "w": 59.33,
+            "z": 1
           },
           "groups": [
             {
-              "title": "atspindžiai",
+              "title": "Scenoje",
               "year": "2026",
               "images": [
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792403748/IMG_20220916_171014.jpg",
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792480197/IMG_20220916_171139.jpg",
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792403685/IMG_20220905_085605.jpg",
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792403312/IMG_20220905_085310.jpg",
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792403308/IMG_20220905_084829.jpg"
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792521223/Screenshot_Aritmija.png",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792745537/Vyd%C5%ABnas_apie_meil%C4%99_renginys9.png",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792519298/tu_man_skolinga_10.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792523967/Screenshot_from_2026-10-20_22-05-29.png",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792746787/prie_debes%C5%B33.png",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792519948/tu_man_skolinga-40.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792744701/i%C5%A1_pasirodymo_22Balta_22_galerijoj_screenshots5.png"
+              ]
+            },
+            {
+              "title": "Eilėraštis apie tave",
+              "year": "",
+              "images": [
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792773351/1.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792773359/484849702_9794692100549489_685829061733729358_n.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792841736/IMG_20240719_140700_400.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792841734/20240824_203933.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792773356/4.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792842644/20250729_152116.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792772902/20240717_184745.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792774233/eil%C4%97ra%C5%A1tis_nam%C5%B3_ramyb%C4%97s_tu%C5%A1tumai_Sigitui.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792843368/kas_yra_ugnis.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792843946/IMG_20240817_184509_edit_77895455114675.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792843979/20240720_185146.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792849431/20240803_211915.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792849474/Messenger_creation_154b3759-840a-44f9-a5c2-f506f038de35.jpg"
+              ],
+              "text": "Poetinės kūrybinės mano rengiamos dirbtuvės. Jų metu eiliuoju pašnekovo mintis, išgyvenimus, įžvalgas ir iš jų sukuriu eilėraštį. Panašiai, kaip dailininkas linijomis, dėmėmis kuria veido portretą -\ntaip raidėmis ir žodžiais sukuriamas Tavo vidaus portretas.\n\nhttps://www.instagram.com/apie_tave_eilerastis/\n"
+            },
+            {
+              "title": "Kūrybinės edukacijos",
+              "year": "",
+              "images": [
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792849652/2024-05-25_-_Sveskime_upe_-_Grazvydas_Jovaisa_-_WebSize-176.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792849646/2024-05-25_-_Sveskime_upe_-_Grazvydas_Jovaisa_-_WebSize-174.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792849650/IMG20260524130448_rt.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792849649/Karm%C4%97lavos_mokykloje_su_Varnele.png",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792849640/20260602_122940.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792849642/20260507_123942.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792849634/pakruojo_AJC4.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792849634/e.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792849648/2024-05-25_-_Sveskime_upe_-_Grazvydas_Jovaisa_-_WebSize-218.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792849637/Profilio_nuotrauka.jpg"
               ]
             }
           ]
         },
         {
           "type": "stacks",
-          "heading": "",
+          "heading": "Interjere",
           "box": {
-            "x": 0.94,
-            "y": 89.52,
-            "w": 20.19,
+            "x": 4,
+            "y": 116.49,
+            "w": 48,
             "z": 2
           },
           "groups": [
             {
-              "title": "gyliai",
+              "title": "Nauja grupė",
               "year": "2026",
               "images": [
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792401594/20200818_184361_RT.jpg",
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792401811/Ram%C5%ABnui-5_%C5%BEr.jpg",
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792401515/ie%C5%A1kok_ka%C5%BEko_2.jpg",
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792401527/IMG_20220618_181350.jpg",
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792401491/ie%C5%A1kok_ka%C5%BEko_1.jpg",
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792401527/IMG_20220618_181350.jpg"
+                "https://picsum.photos/seed/urzdv-0/800/1000",
+                "https://picsum.photos/seed/urzdv-1/1000/700",
+                "https://picsum.photos/seed/urzdv-2/800/800",
+                "https://picsum.photos/seed/urzdv-3/700/1000",
+                "https://picsum.photos/seed/urzdv-4/1200/800",
+                "https://picsum.photos/seed/urzdv-5/800/1000"
               ]
-            }
-          ]
-        },
-        {
-          "type": "stacks",
-          "heading": "",
-          "box": {
-            "x": 56.54,
-            "y": 45.23,
-            "w": 19.03,
-            "z": 2
-          },
-          "groups": [
+            },
             {
-              "title": "saulė ir kitos šypsenėlės",
-              "year": "2026",
+              "title": "Nematomi",
+              "year": "grafika baldų linijai",
               "images": [
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792400818/IMG_20220923_152306.jpg",
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792480361/planet%C5%B3_pie%C5%A1iniai_2_RT.jpg",
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792480369/IMG_20220923_152014_RT.jpg",
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792480526/20240919_141758.jpg",
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792480526/20240919_141734.jpg",
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792480600/20211117_154425_RT.jpg",
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792480842/20211009_132200_RT.jpg",
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792480843/20211008_173802.jpg"
+                "https://picsum.photos/seed/vpvx9-0/800/1000",
+                "https://picsum.photos/seed/vpvx9-1/1000/700",
+                "https://picsum.photos/seed/vpvx9-2/800/800",
+                "https://picsum.photos/seed/vpvx9-3/700/1000",
+                "https://picsum.photos/seed/vpvx9-4/1200/800",
+                "https://picsum.photos/seed/vpvx9-5/800/1000"
+              ]
+            },
+            {
+              "title": "sienų tapyba",
+              "year": "",
+              "images": [
+                "https://picsum.photos/seed/vm1mn-0/800/1000",
+                "https://picsum.photos/seed/vm1mn-1/1000/700",
+                "https://picsum.photos/seed/vm1mn-2/800/800",
+                "https://picsum.photos/seed/vm1mn-3/700/1000",
+                "https://picsum.photos/seed/vm1mn-4/1200/800",
+                "https://picsum.photos/seed/vm1mn-5/800/1000"
               ]
             }
           ]
@@ -180,14 +277,14 @@ window.SITE_DEFAULTS = {
       "layout": "free",
       "boxes": {
         "title": {
-          "x": 0,
+          "x": 2.88,
           "y": 5.19,
           "w": 70,
           "z": 3
         },
         "intro": {
-          "x": 1.15,
-          "y": 20.76,
+          "x": 34.61,
+          "y": 2.88,
           "w": 37.92,
           "z": 3
         }
