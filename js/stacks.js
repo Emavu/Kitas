@@ -14,6 +14,15 @@
     .map((p) => `<p>${linkify(esc(p.trim())).replace(/\n/g, "<br>")}</p>`).join("");
   const design = () => Store.data.design;
 
+  // Cloudinary can resize on the fly: ask for a web-sized copy instead of the original
+  // (originals are often 2–9 MB each). Other image hosts are used as they are.
+  function sized(url, w) {
+    return /res\.cloudinary\.com\/[^/]+\/image\/upload\/(?!.*\b[wc]_\d)/.test(url)
+      ? url.replace("/image/upload/", `/image/upload/f_auto,q_auto,c_limit,w_${w}/`)
+      : url;
+  }
+  const PILE_VISIBLE = 4; // only the top of the pile is visible; the rest load when the stack opens
+
   // Deterministic pseudo-random so piles look the same on every render
   function jitter(seed) {
     const x = Math.sin(seed * 9301 + 49297) * 233280;
@@ -34,7 +43,11 @@
         <figure class="stack" tabindex="0" role="button" aria-expanded="false" aria-label="Atidaryti: ${esc(g.title)}" data-text="${esc(g.text || "")}">
           <div class="stack__pile">
             ${imgs
-              .map((src, i) => `<img class="stack__img" src="${esc(src)}" alt="${esc(g.title)} ${i + 1}" style="${pileVars(i)}z-index:${imgs.length - i}" ${i < 4 ? "" : 'loading="lazy"'} draggable="false">`)
+              .map((src, i) => {
+                const url = esc(sized(src, 900));
+                const load = i < PILE_VISIBLE ? `src="${url}" loading="lazy" decoding="async"` : `data-src="${url}" decoding="async"`;
+                return `<img class="stack__img" ${load} data-full="${esc(sized(src, 2000))}" alt="${esc(g.title)} ${i + 1}" style="${pileVars(i)}z-index:${imgs.length - i}" draggable="false">`;
+              })
               .join("")}
           </div>
           <figcaption class="stack__cap">
@@ -53,7 +66,8 @@
       img.style.setProperty("--ar", ar.toFixed(3));
       img.classList.toggle("is-wide", ar > 1.25);
     };
-    img.complete ? apply() : img.addEventListener("load", apply, { once: true });
+    if (img.complete && img.naturalWidth) apply();
+    else img.addEventListener("load", apply, { once: true });
   }
 
   function bind(root) {
@@ -105,7 +119,10 @@
     busy = true;
     const d = design().flipDuration;
     const imgs = [...stack.querySelectorAll(".stack__pile .stack__img")];
-    imgs.forEach((img) => { img.loading = "eager"; });
+    imgs.forEach((img) => {
+      img.loading = "eager";
+      if (img.dataset.src) { img.src = img.dataset.src; img.removeAttribute("data-src"); }
+    });
     const freeItem = stack.closest(".free__item");
     const closedHeight = freeItem ? freeItem.offsetHeight : 0;
 
@@ -206,7 +223,7 @@
     function show(i) {
       index = (i + list.length) % list.length;
       const img = box.querySelector(".lightbox__img");
-      img.src = list[index].src;
+      img.src = list[index].dataset.full || list[index].src;
       img.alt = list[index].alt;
       box.classList.toggle("is-single", list.length < 2);
       return img;

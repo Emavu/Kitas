@@ -72,19 +72,42 @@
     }
   }
 
+  let glowCanvas = null, glowKey = "";
+  function glowSprite() {
+    const key = cfg.particleCore + cfg.particleOuter;
+    if (glowCanvas && glowKey === key) return glowCanvas;
+    glowKey = key;
+    glowCanvas = glowCanvas || document.createElement("canvas");
+    glowCanvas.width = glowCanvas.height = 256;
+    const g = glowCanvas.getContext("2d");
+    const grad = g.createRadialGradient(128, 128, 0, 128, 128, 128);
+    const mid = cOuter.map((v, i) => (v + cCore[i]) >> 1);
+    grad.addColorStop(0, rgba(cCore, 1));
+    grad.addColorStop(0.35, rgba(mid, 0.45));
+    grad.addColorStop(1, rgba(cOuter, 0));
+    g.clearRect(0, 0, 256, 256);
+    g.fillStyle = grad;
+    g.fillRect(0, 0, 256, 256);
+    return glowCanvas;
+  }
+
   function bg(alpha) {
     return rgba(cBg, alpha);
   }
 
   function resize() {
-    dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    dpr = 1; // soft, glowing background: full device resolution isn't visible, but costs 4–9x more per frame
     W = canvas.width = Math.round(innerWidth * dpr);
     H = canvas.height = Math.round(innerHeight * dpr);
     ctx.fillStyle = bg(1);
     ctx.fillRect(0, 0, W, H);
   }
 
+  let skip = false;
   function frame(t) {
+    // idle (not scrolling): draw every other frame — the slow spin looks the same at 30 fps
+    skip = !skip;
+    if (skip && Math.abs(boost) < 0.02 && !reduced) return requestAnimationFrame(frame);
     const dt = Math.min((t - lastT) / 1000, 0.05);
     lastT = t;
 
@@ -118,16 +141,12 @@
     }
     const paint = cfg.vortexStyle === "paint";
 
-    // Core glow
+    // Core glow: a pre-drawn sprite, only as big as the glow itself
     if (cfg.glow > 0 && (!paint || blend === "lighter")) {
-      const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, R * 0.55);
-      const a = cfg.glow * (1 - cfg.trail) * 0.9;
-      const mid = cOuter.map((v, i) => (v + cCore[i]) >> 1);
-      g.addColorStop(0, rgba(cCore, a));
-      g.addColorStop(0.35, rgba(mid, a * 0.45));
-      g.addColorStop(1, rgba(cOuter, 0));
-      ctx.fillStyle = g;
-      ctx.fillRect(0, 0, W, H);
+      const gr = R * 0.55;
+      ctx.globalAlpha = Math.min(1, cfg.glow * (1 - cfg.trail) * 0.9);
+      ctx.drawImage(glowSprite(), cx - gr, cy - gr, gr * 2, gr * 2);
+      ctx.globalAlpha = 1;
     }
 
     const inflow = dt * motion * cfg.inflow * 0.06 * (1 + Math.abs(boost) * 3);
