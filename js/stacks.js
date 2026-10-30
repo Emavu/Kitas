@@ -1,18 +1,14 @@
-/* Image stacks. Clicking a stack opens it in place: the card grows to the full
-   width of the page, its description and photos unfold inside it (the photos fly
-   out of the pile, GSAP Flip) and the caption slides down underneath them.
-   Everything after the card moves down to make room. Clicking a photo enlarges it. */
+/* Image stacks. Clicking a stack opens it in place: its description and photos
+   unfold inside the card (a plain CSS height + fade transition, cheap on phones)
+   and the caption stays underneath. Clicking a photo shows it large. */
 (function () {
-  gsap.registerPlugin(Flip);
-
-  let active = null;   // { stack, panel, freeItem }
-  let busy = false;
+  let active = null;  // { stack, panel, freeItem }
+  let pending = null; // finishes a card that is still closing
 
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const linkify = (h) => h.replace(/(https?:\/\/[^\s<]+[^\s<.,;:!?)\]])/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
   const paras = (txt) => String(txt || "").split(/\n\s*\n/).filter((p) => p.trim())
     .map((p) => `<p>${linkify(esc(p.trim())).replace(/\n/g, "<br>")}</p>`).join("");
-  const design = () => Store.data.design;
 
   // Cloudinary can resize on the fly: ask for a web-sized copy instead of the original
   // (originals are often 2–9 MB each). Other image hosts are used as they are.
@@ -21,7 +17,7 @@
       ? url.replace("/image/upload/", `/image/upload/f_auto,q_auto,c_limit,w_${w}/`)
       : url;
   }
-  const PILE_VISIBLE = 4; // only the top of the pile is visible; the rest load when the stack opens
+  const PILE_VISIBLE = 4; // only the top of the pile shows; the rest load when the stack opens
 
   // Deterministic pseudo-random so piles look the same on every render
   function jitter(seed) {
@@ -42,13 +38,11 @@
         return `
         <figure class="stack" tabindex="0" role="button" aria-expanded="false" aria-label="Atidaryti: ${esc(g.title)}" data-text="${esc(g.text || "")}">
           <div class="stack__pile">
-            ${imgs
-              .map((src, i) => {
-                const url = esc(sized(src, 900));
-                const load = i < PILE_VISIBLE ? `src="${url}" loading="lazy" decoding="async"` : `data-src="${url}" decoding="async"`;
-                return `<img class="stack__img" ${load} data-full="${esc(sized(src, 2000))}" alt="${esc(g.title)} ${i + 1}" style="${pileVars(i)}z-index:${imgs.length - i}" draggable="false">`;
-              })
-              .join("")}
+            ${imgs.map((src, i) => {
+              const url = esc(sized(src, 900));
+              const load = i < PILE_VISIBLE ? `src="${url}" loading="lazy"` : `data-src="${url}"`;
+              return `<img class="stack__img" ${load} decoding="async" data-full="${esc(sized(src, 2000))}" alt="${esc(g.title)} ${i + 1}" style="${pileVars(i)}z-index:${imgs.length - i}" draggable="false">`;
+            }).join("")}
           </div>
           <figcaption class="stack__cap">
             <span class="stack__title">${esc(g.title)}</span>
@@ -88,53 +82,29 @@
   }
 
   function toggle(stack) {
-    if (busy) return;
+    if (pending) pending();
     if (active && active.stack === stack) return close();
-    if (active) return close(() => open(stack));
+    if (active) close(true);
     open(stack);
   }
 
-  // Everything whose position changes when a card opens or closes, so Flip can animate it
-  function movers(stack) {
-    const freeItem = stack.closest(".free__item");
-    const canvas = stack.closest(".free");
-    const list = freeItem && canvas && !canvas.classList.contains("is-flow")
-      ? [...canvas.querySelectorAll(":scope > .free__item")]
-      : [...stack.parentElement.querySelectorAll(":scope > .stack")];
-    return list.concat([...stack.querySelectorAll(".stack__img, .stack__cap")]);
-  }
-
-  function animate(state, d, done) {
-    Flip.from(state, {
-      duration: d,
-      ease: "expo.inOut",
-      nested: true,
-      scale: false,
-      simple: false,
-      onComplete: done
-    });
-  }
-
   function open(stack) {
-    busy = true;
-    const d = design().flipDuration;
-    const imgs = [...stack.querySelectorAll(".stack__pile .stack__img")];
-    imgs.forEach((img) => {
-      img.loading = "eager";
-      if (img.dataset.src) { img.src = img.dataset.src; img.removeAttribute("data-src"); }
-    });
     const freeItem = stack.closest(".free__item");
     const closedHeight = freeItem ? freeItem.offsetHeight : 0;
+    const imgs = [...stack.querySelectorAll(".stack__pile .stack__img")];
+    imgs.forEach((img) => {
+      if (img.dataset.src) { img.src = img.dataset.src; img.removeAttribute("data-src"); }
+    });
 
-    const state = Flip.getState(movers(stack));
-
+    const text = stack.dataset.text;
     const panel = document.createElement("div");
     panel.className = "gpanel";
-    const text = stack.dataset.text;
     panel.innerHTML = `
-      <button type="button" class="gpanel__close" aria-label="Uždaryti">${ICONS.close}</button>
-      ${text ? `<div class="gpanel__text">${paras(text)}</div>` : ""}
-      <div class="gpanel__grid"></div>`;
+      <div class="gpanel__body">
+        <button type="button" class="gpanel__close" aria-label="Uždaryti">${ICONS.close}</button>
+        ${text ? `<div class="gpanel__text">${paras(text)}</div>` : ""}
+        <div class="gpanel__grid"></div>
+      </div>`;
     const grid = panel.querySelector(".gpanel__grid");
     imgs.forEach((img) => grid.appendChild(img));
     stack.insertBefore(panel, stack.querySelector(".stack__cap"));
@@ -142,46 +112,41 @@
     active = { stack, panel, freeItem };
     stack.classList.add("is-open");
     stack.setAttribute("aria-expanded", "true");
-    if (freeItem) freeItem.classList.add("has-panel");
-    document.documentElement.classList.add("is-flipping");
-    if (freeItem) Free.setExpanded(freeItem, closedHeight); else Free.layout();
+    if (freeItem) {
+      freeItem.classList.add("has-panel");
+      Free.setExpanded(freeItem, closedHeight);
+    }
+    // read a size first so the browser registers the folded state, then let CSS unfold it
+    void panel.offsetHeight;
+    panel.classList.add("is-shown");
 
-    gsap.fromTo(panel.querySelectorAll(".gpanel__text, .gpanel__close"), { autoAlpha: 0, y: 24 },
-      { autoAlpha: 1, y: 0, duration: d * 0.6, delay: d * 0.35, stagger: 0.08, ease: "expo.out" });
-    animate(state, d, () => {
-      document.documentElement.classList.remove("is-flipping");
-      busy = false;
-      Free.layout();
-      const r = stack.getBoundingClientRect();
-      if (r.top < 0 || r.top > innerHeight * 0.6) window.scrollTo({ top: window.scrollY + r.top - 96, behavior: "smooth" });
-    });
+    const top = stack.getBoundingClientRect().top;
+    if (top < 0 || top > innerHeight * 0.5) stack.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  function close(then) {
-    if (!active || busy) return;
-    busy = true;
+  // instant = true when another card opens right away (no need to animate this one shut)
+  function close(instant) {
+    if (!active) return;
     const { stack, panel, freeItem } = active;
-    const d = design().flipDuration;
-    const pile = stack.querySelector(".stack__pile");
-
-    const state = Flip.getState(movers(stack));
-    [...panel.querySelectorAll(".stack__img")].forEach((img) => pile.appendChild(img));
-    panel.remove();
-    stack.classList.remove("is-open");
-    stack.setAttribute("aria-expanded", "false");
-    if (freeItem) freeItem.classList.remove("has-panel");
-    document.documentElement.classList.add("is-flipping");
-    stack.classList.add("is-returning");
-    Free.setExpanded(null);
-
-    animate(state, d, () => {
-      stack.classList.remove("is-returning");
-      document.documentElement.classList.remove("is-flipping");
-      active = null;
-      busy = false;
-      Free.layout();
-      if (then) then();
-    });
+    active = null;
+    const finish = () => {
+      pending = null;
+      if (!panel.isConnected) return;
+      const pile = stack.querySelector(".stack__pile");
+      panel.querySelectorAll(".stack__img").forEach((img) => pile.appendChild(img));
+      panel.remove();
+      stack.classList.remove("is-open");
+      stack.setAttribute("aria-expanded", "false");
+      if (freeItem) {
+        freeItem.classList.remove("has-panel");
+        Free.setExpanded(null);
+      }
+    };
+    if (instant === true) return finish();
+    pending = finish;
+    panel.classList.remove("is-shown");
+    panel.addEventListener("transitionend", (e) => { if (e.target === panel) finish(); });
+    setTimeout(finish, 600); // in case transitionend doesn't fire (e.g. reduced motion)
   }
 
   document.addEventListener("keydown", (e) => {
@@ -190,34 +155,31 @@
 
   // ---------- Lightbox: one photo, large ----------
   const Lightbox = (function () {
-    let box = null, list = [], index = 0, from = null;
+    let box = null, list = [], index = 0;
 
     function build() {
       box = document.createElement("div");
       box.className = "lightbox";
       box.innerHTML = `
-        <div class="lightbox__bg"></div>
         <img class="lightbox__img" alt="">
         <button type="button" class="lightbox__btn lightbox__close" aria-label="Uždaryti">${ICONS.close}</button>
         <button type="button" class="lightbox__btn lightbox__prev" aria-label="Ankstesnė">${ICONS.chevronLeft}</button>
         <button type="button" class="lightbox__btn lightbox__next" aria-label="Kita">${ICONS.chevronRight}</button>`;
       document.body.appendChild(box);
-      box.querySelector(".lightbox__close").addEventListener("click", hide);
-      box.querySelector(".lightbox__bg").addEventListener("click", hide);
-      box.querySelector(".lightbox__prev").addEventListener("click", () => step(-1));
-      box.querySelector(".lightbox__next").addEventListener("click", () => step(1));
-      box.querySelector(".lightbox__img").addEventListener("click", hide);
-    }
-
-    // Animate the big image from / to the thumbnail's rectangle
-    function fly(img, rect, reverse, done) {
-      const r = img.getBoundingClientRect();
-      const sx = rect.width / r.width, sy = rect.height / r.height;
-      const dx = rect.left + rect.width / 2 - (r.left + r.width / 2);
-      const dy = rect.top + rect.height / 2 - (r.top + r.height / 2);
-      const small = { x: dx, y: dy, scaleX: sx, scaleY: sy };
-      const big = { x: 0, y: 0, scaleX: 1, scaleY: 1 };
-      gsap.fromTo(img, reverse ? big : small, Object.assign({}, reverse ? small : big, { duration: 0.6, ease: "expo.inOut", onComplete: done }));
+      box.addEventListener("click", (e) => {
+        if (e.target.closest(".lightbox__prev")) return step(-1);
+        if (e.target.closest(".lightbox__next")) return step(1);
+        hide();
+      });
+      // swipe left / right on phones
+      let x0 = null;
+      box.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+      box.addEventListener("touchend", (e) => {
+        if (x0 === null) return;
+        const dx = e.changedTouches[0].clientX - x0;
+        x0 = null;
+        if (Math.abs(dx) > 50) { e.preventDefault(); step(dx < 0 ? 1 : -1); }
+      });
     }
 
     function show(i) {
@@ -226,43 +188,22 @@
       img.src = list[index].dataset.full || list[index].src;
       img.alt = list[index].alt;
       box.classList.toggle("is-single", list.length < 2);
-      return img;
     }
 
     function open(thumb) {
       if (!box) build();
       list = [...thumb.parentElement.querySelectorAll(".stack__img")];
-      from = thumb;
-      const img = show(list.indexOf(thumb));
+      show(list.indexOf(thumb));
       box.classList.add("is-open");
       document.documentElement.classList.add("is-locked");
-      gsap.fromTo(box.querySelector(".lightbox__bg"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 });
-      gsap.fromTo(box.querySelectorAll(".lightbox__btn"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4, delay: 0.3 });
-      const go = () => fly(img, thumb.getBoundingClientRect(), false);
-      img.complete && img.naturalWidth ? go() : img.addEventListener("load", go, { once: true });
     }
 
-    function step(dir) {
-      const img = box.querySelector(".lightbox__img");
-      gsap.to(img, { autoAlpha: 0, x: -dir * 40, duration: 0.2, onComplete: () => {
-        show(index + dir);
-        from = list[index];
-        gsap.fromTo(img, { autoAlpha: 0, x: dir * 40 }, { autoAlpha: 1, x: 0, duration: 0.35, ease: "expo.out" });
-      } });
-    }
+    function step(dir) { show(index + dir); }
 
     function hide() {
-      if (!box || !box.classList.contains("is-open")) return;
-      const img = box.querySelector(".lightbox__img");
-      gsap.to(box.querySelectorAll(".lightbox__btn"), { autoAlpha: 0, duration: 0.2 });
-      gsap.to(box.querySelector(".lightbox__bg"), { autoAlpha: 0, duration: 0.5, delay: 0.15 });
-      const finish = () => {
-        box.classList.remove("is-open");
-        gsap.set(img, { clearProps: "all" });
-        document.documentElement.classList.remove("is-locked");
-      };
-      if (from && from.isConnected) fly(img, from.getBoundingClientRect(), true, finish);
-      else gsap.to(img, { autoAlpha: 0, duration: 0.3, onComplete: finish });
+      if (!box) return;
+      box.classList.remove("is-open");
+      document.documentElement.classList.remove("is-locked");
     }
 
     document.addEventListener("keydown", (e) => {
@@ -282,11 +223,9 @@
     // Called on route change: the DOM is about to be replaced, just forget the open card
     reset() {
       Lightbox.hide();
-      if (!active) return;
-      Free.setExpanded(null);
-      document.documentElement.classList.remove("is-flipping");
+      pending = null;
+      if (active && active.freeItem) Free.setExpanded(null);
       active = null;
-      busy = false;
     }
   };
 })();

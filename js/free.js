@@ -190,7 +190,7 @@
     Store.change("layout");
   });
 
-  // Open a card in place (el) or close it again (null); runs synchronously so Flip can measure
+  // Open a card in place (el) or close it again (null)
   // closedHeight: the card's height before it opened (things in its row start at most half of it higher)
   function setExpanded(el, closedHeight = 0) {
     if (el && canvas && canvas.contains(el)) {

@@ -153,7 +153,7 @@
     const slug = slugFromPath();
 
     if (slug === "admin") {
-      Admin.open();
+      loadAdmin();
       history.replaceState(null, "", "/");
       return renderPage();
     }
@@ -297,7 +297,28 @@
     }
   });
 
-  window.App = { go, render: renderPage, slug: slugFromPath };
+  // The editor (admin.js + admin.css, ~40 KB) is only downloaded when someone opens /admin
+  let adminLoading = null;
+  function loadAdmin() {
+    if (window.Admin) return Promise.resolve(Admin.open());
+    adminLoading = adminLoading || new Promise((resolve, reject) => {
+      const css = document.createElement("link");
+      css.rel = "stylesheet";
+      css.href = "/css/admin.css";
+      document.head.appendChild(css);
+      const js = document.createElement("script");
+      js.src = "/js/admin.js";
+      js.onload = resolve;
+      js.onerror = reject;
+      document.body.appendChild(js);
+    });
+    return adminLoading.then(() => Admin.open());
+  }
+  const flag = document.getElementById("draft-flag");
+  flag.hidden = !Store.hasDraft();
+  flag.addEventListener("click", (e) => { e.preventDefault(); loadAdmin(); });
+
+  window.App = { go, render: renderPage, slug: slugFromPath, loadAdmin };
 
   document.addEventListener("DOMContentLoaded", () => {
     applyDesign();

@@ -325,8 +325,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
     rotate(calc(var(--r) * var(--stack-rot) * 2));
 }
 .stack:hover .stack__pile .stack__img:first-child { transform: translateY(calc(var(--u) * -1)); }
-html.is-flipping .stack__img { transition: none !important; }
-.stack.is-returning { position: relative; z-index: 60; }
 
 .stack__cap {
   display: flex;
@@ -344,7 +342,18 @@ html.is-flipping .stack__img { transition: none !important; }
 .stacks > .stack.is-open { grid-column: 1 / -1; margin-top: 0; cursor: default; }
 .stack.is-open .stack__pile { display: none; }
 .stack.is-open .stack__cap { cursor: pointer; }
-.gpanel { position: relative; padding-top: calc(var(--u) * 6); }
+/* unfolds with a CSS row-height transition (0fr → 1fr): no JS animation, smooth on phones */
+.gpanel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
+}
+.gpanel.is-shown { grid-template-rows: 1fr; opacity: 1; }
+.gpanel__body { position: relative; min-height: 0; overflow: hidden; }
+.gpanel__body > :nth-child(2) { margin-top: calc(var(--u) * 6); }
+.gpanel__grid { padding-bottom: var(--u); }
+.stack { scroll-margin-top: calc(var(--u) * 10); }
 .gpanel__close {
   position: absolute;
   top: 0;
@@ -392,9 +401,16 @@ html.is-flipping .stack__img { transition: none !important; }
 .free__item.has-panel { z-index: 31 !important; }
 
 /* ---------- Lightbox ---------- */
-.lightbox { position: fixed; inset: 0; z-index: 90; display: none; }
-.lightbox.is-open { display: block; }
-.lightbox__bg { position: absolute; inset: 0; background: var(--bg); }
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: var(--bg);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.25s ease, visibility 0s linear 0.25s;
+}
+.lightbox.is-open { visibility: visible; opacity: 1; transition: opacity 0.25s ease; }
 .lightbox__img {
   position: absolute;
   inset: calc(var(--u) * 8) calc(var(--u) * 10);
@@ -402,7 +418,6 @@ html.is-flipping .stack__img { transition: none !important; }
   height: calc(100% - var(--u) * 16);
   object-fit: contain;
   cursor: zoom-out;
-  transform-origin: 50% 50%;
 }
 .lightbox__btn {
   position: absolute;
@@ -530,6 +545,7 @@ html.is-flipping .stack__img { transition: none !important; }
 .reveal.is-in { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
+  .gpanel, .lightbox { transition: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .stack__pile .stack__img { transition: none; }
 }

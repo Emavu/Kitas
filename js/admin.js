@@ -10,8 +10,6 @@
   const SLIDERS = [
     ["Vortex", [
       ["particleCount", "Particles", 200, 8000, 100],
-      ["drips", "Paint drips (paint style)", 0, 1, 0.01],
-      ["dripLength", "Drip length (paint style)", 0.2, 3, 0.05],
       ["spinSpeed", "Idle spin", 0, 2, 0.01],
       ["scrollSpin", "Scroll spin", 0, 6, 0.05],
       ["inflow", "Pull to centre", 0, 3, 0.05],
@@ -30,7 +28,6 @@
       ["textScale", "Text scale", 0.6, 1.4, 0.01],
       ["stackRotation", "Stack rotation", 0, 20, 0.5],
       ["stackSpread", "Stack spread", 0, 40, 1],
-      ["flipDuration", "Unstack speed (s)", 0.3, 2, 0.05],
       ["gridColumns", "Grid columns", 2, 6, 1]
     ]]
   ];
@@ -164,14 +161,7 @@
 
   function designTab() {
     const d = D().design;
-    return `<fieldset class="adm__group"><legend>Vortex style</legend>
-        <label class="adm__field"><span>How the swirl looks</span>
-          <select data-vstyle>
-            <option value="paint" ${d.vortexStyle === "paint" ? "selected" : ""}>Paint — brush dabs that drip</option>
-            <option value="ink" ${d.vortexStyle === "ink" ? "selected" : ""}>Ink — stippled &amp; scaled pen-and-ink spirals (best with the “Tušas” colours)</option>
-            <option value="particles" ${!["paint", "ink"].includes(d.vortexStyle) ? "selected" : ""}>Particles — glowing specks</option>
-          </select></label>
-      </fieldset>` + SLIDERS.map(([group, rows]) => `
+    return SLIDERS.map(([group, rows]) => `
       <fieldset class="adm__group"><legend>${group}</legend>
         ${rows.map(([key, label, min, max, step]) => `
           <label class="adm__slider">
@@ -433,10 +423,6 @@
   panel.addEventListener("change", (e) => {
     const t = e.target;
     if (t.dataset.fontfile !== undefined && t.files[0]) readFont(t.files[0]);
-    if (t.dataset.vstyle !== undefined) {
-      D().design.vortexStyle = t.value;
-      return Store.change("design");
-    }
     if (t.dataset.namefont !== undefined) {
       D().design.nameFont = t.value;
       Store.change("design");
@@ -671,7 +657,6 @@
     if (!panel.hidden && idx >= 0 && tab === "pages") { pageIdx = idx; render(); }
   });
 
-  flag.addEventListener("click", (e) => { e.preventDefault(); open(); });
   flag.hidden = !Store.hasDraft();
 
   window.Admin = { open, close };

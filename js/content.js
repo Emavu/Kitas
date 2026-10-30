@@ -12,22 +12,21 @@ window.SITE_DEFAULTS = {
     ]
   },
   "design": {
-    "particleCount": 1800,
+    "particleCount": 500,
     "spinSpeed": 0.21,
     "scrollSpin": 0.6,
-    "inflow": 0.75,
+    "inflow": 0.45,
     "arms": 3,
     "twist": 1.4,
     "particleSize": 1.1,
-    "trail": 0.19,
+    "trail": 0.07,
     "glow": 0.93,
     "centerX": 0.44,
     "centerY": 0.32,
-    "radius": 0.74,
+    "radius": 0.51,
     "textScale": 0.87,
     "stackRotation": 3,
     "stackSpread": 0,
-    "flipDuration": 1.85,
     "gridColumns": 5,
     "nameFont": "sztos-variable",
     "customFont": null,
@@ -40,10 +39,7 @@ window.SITE_DEFAULTS = {
     "colorName1": "#ecffe0",
     "colorName2": "#c6ff2e",
     "particleOuter": "#3dff8b",
-    "particleCore": "#f4ff9e",
-    "vortexStyle": "particles",
-    "drips": 0.16,
-    "dripLength": 1.15
+    "particleCore": "#f4ff9e"
   },
   "pages": [
     {
