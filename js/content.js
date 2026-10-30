@@ -107,9 +107,9 @@ window.SITE_DEFAULTS = {
             }
           ],
           "box": {
-            "x": 24.22,
-            "y": 26.53,
-            "w": 61.14,
+            "x": 2.88,
+            "y": 19.18,
+            "w": 58.51,
             "z": 3
           }
         },
@@ -118,8 +118,8 @@ window.SITE_DEFAULTS = {
           "heading": "Žodžiuose",
           "url": "https://youtu.be/r_nqp1XCr2E",
           "box": {
-            "x": 24.22,
-            "y": 60.56,
+            "x": 5.76,
+            "y": 122.78,
             "w": 22.63,
             "z": 2
           }
@@ -128,9 +128,9 @@ window.SITE_DEFAULTS = {
           "type": "stacks",
           "heading": "",
           "box": {
-            "x": 71.4,
-            "y": 60.34,
-            "w": 28.6,
+            "x": 6.71,
+            "y": 146.76,
+            "w": 20.14,
             "z": 2
           },
           "groups": [
@@ -151,8 +151,8 @@ window.SITE_DEFAULTS = {
           "heading": "",
           "url": "https://youtu.be/DOlw_BUP3DU",
           "box": {
-            "x": 47.77,
-            "y": 64.86,
+            "x": 31.65,
+            "y": 130.46,
             "w": 22.12,
             "z": 2
           }
@@ -161,8 +161,8 @@ window.SITE_DEFAULTS = {
           "type": "stacks",
           "heading": "Veiksme",
           "box": {
-            "x": 24.14,
-            "y": 86.49,
+            "x": 6.71,
+            "y": 192.81,
             "w": 59.33,
             "z": 1
           },
@@ -222,8 +222,8 @@ window.SITE_DEFAULTS = {
           "type": "stacks",
           "heading": "Interjere",
           "box": {
-            "x": 4,
-            "y": 116.49,
+            "x": 6.71,
+            "y": 296.4,
             "w": 48,
             "z": 2
           },
@@ -968,7 +968,7 @@ window.SITE_DEFAULTS = {
     {
       "slug": "kitasfylmas",
       "title": "Kitas fylmas",
-      "hidden": false,
+      "hidden": true,
       "intro": "Slaptas puslapis — pasiekiamas tik per nuorodą. Jo nėra meniu.",
       "blocks": [
         {

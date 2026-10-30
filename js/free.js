@@ -7,7 +7,7 @@
   const MOBILE = 720;
   let canvas = null, page = null, editing = false, selected = null;
   let ro = null, raf = 0;
-  let expanded = null; // { el, from }: an opened gallery card — full width; items from `from` down move below it
+  let expanded = null; // { el, closedHeight, from }: an opened gallery card; items starting below it move down
 
   function boxOf(key) {
     if (key === "title" || key === "intro") return page.boxes[key];
@@ -61,10 +61,16 @@
     }
     const exp = expanded && expanded.el.isConnected ? expanded : null;
     let shift = 0;
+    // An opened card keeps its place; narrow ones widen to at least 60% so photos stay readable.
+    // Only what starts below the card moves, and only by as much as the card grew.
+    let expX = 0, expW = 0;
     if (exp) {
-      exp.el.style.left = "0%";
-      exp.el.style.width = "100%";
-      shift = exp.el.offsetHeight + SNAP * 4;
+      const b = boxOf(exp.el.dataset.key);
+      expW = Math.max(b.w, 60);
+      expX = Math.min(b.x, 100 - expW);
+      exp.el.style.left = expX + "%";
+      exp.el.style.width = expW + "%";
+      shift = Math.max(0, exp.el.offsetHeight - exp.closedHeight);
     }
     let bottom = 0;
     items.forEach((el) => {
@@ -72,9 +78,9 @@
       let top = (b.y / 100) * W;
       const isExp = exp && el === exp.el;
       if (exp && !isExp && top >= exp.from) top += shift;
-      el.style.left = isExp ? "0%" : b.x + "%";
+      el.style.left = (isExp ? expX : b.x) + "%";
       el.style.top = top + "px";
-      el.style.width = isExp ? "100%" : b.w + "%";
+      el.style.width = (isExp ? expW : b.w) + "%";
       el.style.height = b.h ? (b.h / 100) * W + "px" : "";
       el.style.zIndex = b.z || 2;
       el.style.order = "";
@@ -191,12 +197,12 @@
   });
 
   // Open a card in place (el) or close it again (null)
-  // closedHeight: the card's height before it opened (things in its row start at most half of it higher)
+  // closedHeight: the card's height before it opened
   function setExpanded(el, closedHeight = 0) {
     if (el && canvas && canvas.contains(el)) {
       const W = canvas.clientWidth;
       const top = (boxOf(el.dataset.key).y / 100) * W;
-      expanded = { el, from: top - closedHeight / 2 };
+      expanded = { el, closedHeight, from: top + 1 };
     } else {
       expanded = null;
     }
