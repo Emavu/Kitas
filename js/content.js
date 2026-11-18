@@ -12,18 +12,18 @@ window.SITE_DEFAULTS = {
     ]
   },
   "design": {
-    "particleCount": 500,
+    "particleCount": 1800,
     "spinSpeed": 0.21,
     "scrollSpin": 0.6,
-    "inflow": 0.45,
+    "inflow": 0.75,
     "arms": 3,
     "twist": 1.4,
     "particleSize": 1.1,
-    "trail": 0.07,
+    "trail": 0.19,
     "glow": 0.93,
     "centerX": 0.44,
     "centerY": 0.32,
-    "radius": 0.51,
+    "radius": 0.74,
     "textScale": 0.87,
     "stackRotation": 3,
     "stackSpread": 0,
@@ -39,12 +39,16 @@ window.SITE_DEFAULTS = {
     "colorName1": "#ecffe0",
     "colorName2": "#c6ff2e",
     "particleOuter": "#3dff8b",
-    "particleCore": "#f4ff9e"
+    "particleCore": "#f4ff9e",
+    "flipDuration": 1.85,
+    "vortexStyle": "particles",
+    "drips": 0.16,
+    "dripLength": 1.15
   },
   "pages": [
     {
       "slug": "",
-      "title": "kūryba",
+      "title": "puslapis kuriamas...",
       "hidden": false,
       "intro": "",
       "blocks": [
@@ -103,13 +107,14 @@ window.SITE_DEFAULTS = {
                 "https://res.cloudinary.com/bxhejjp3/image/upload/v1792480526/20240919_141734.jpg",
                 "https://res.cloudinary.com/bxhejjp3/image/upload/v1792480526/20240919_141758.jpg",
                 "https://res.cloudinary.com/bxhejjp3/image/upload/v1792480600/20211117_154425_RT.jpg"
-              ]
+              ],
+              "text": ""
             }
           ],
           "box": {
-            "x": 2.88,
-            "y": 19.18,
-            "w": 58.51,
+            "x": 24.22,
+            "y": 26.53,
+            "w": 61.14,
             "z": 3
           }
         },
@@ -118,8 +123,8 @@ window.SITE_DEFAULTS = {
           "heading": "Žodžiuose",
           "url": "https://youtu.be/r_nqp1XCr2E",
           "box": {
-            "x": 5.76,
-            "y": 122.78,
+            "x": 24.22,
+            "y": 60.56,
             "w": 22.63,
             "z": 2
           }
@@ -128,9 +133,9 @@ window.SITE_DEFAULTS = {
           "type": "stacks",
           "heading": "",
           "box": {
-            "x": 6.71,
-            "y": 146.76,
-            "w": 20.14,
+            "x": 71.4,
+            "y": 60.34,
+            "w": 28.6,
             "z": 2
           },
           "groups": [
@@ -151,8 +156,8 @@ window.SITE_DEFAULTS = {
           "heading": "",
           "url": "https://youtu.be/DOlw_BUP3DU",
           "box": {
-            "x": 31.65,
-            "y": 130.46,
+            "x": 47.77,
+            "y": 64.86,
             "w": 22.12,
             "z": 2
           }
@@ -161,8 +166,8 @@ window.SITE_DEFAULTS = {
           "type": "stacks",
           "heading": "Veiksme",
           "box": {
-            "x": 6.71,
-            "y": 192.81,
+            "x": 24.14,
+            "y": 86.49,
             "w": 59.33,
             "z": 1
           },
@@ -184,9 +189,8 @@ window.SITE_DEFAULTS = {
               "title": "Eilėraštis apie tave",
               "year": "",
               "images": [
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792773351/1.jpg",
-                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792773359/484849702_9794692100549489_685829061733729358_n.jpg",
                 "https://res.cloudinary.com/bxhejjp3/image/upload/v1792841736/IMG_20240719_140700_400.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792773359/484849702_9794692100549489_685829061733729358_n.jpg",
                 "https://res.cloudinary.com/bxhejjp3/image/upload/v1792841734/20240824_203933.jpg",
                 "https://res.cloudinary.com/bxhejjp3/image/upload/v1792773356/4.jpg",
                 "https://res.cloudinary.com/bxhejjp3/image/upload/v1792842644/20250729_152116.jpg",
@@ -222,47 +226,91 @@ window.SITE_DEFAULTS = {
           "type": "stacks",
           "heading": "Interjere",
           "box": {
-            "x": 6.71,
-            "y": 296.4,
-            "w": 48,
+            "x": 24.14,
+            "y": 116.66,
+            "w": 44.75,
             "z": 2
           },
           "groups": [
             {
-              "title": "Nauja grupė",
-              "year": "2026",
+              "title": "sienų tapyba",
+              "year": "",
               "images": [
-                "https://picsum.photos/seed/urzdv-0/800/1000",
-                "https://picsum.photos/seed/urzdv-1/1000/700",
-                "https://picsum.photos/seed/urzdv-2/800/800",
-                "https://picsum.photos/seed/urzdv-3/700/1000",
-                "https://picsum.photos/seed/urzdv-4/1200/800",
-                "https://picsum.photos/seed/urzdv-5/800/1000"
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794834405/Medis_pas_Lin%C4%85_DI_rt_1.png",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794834408/Medis_pas_Lin%C4%85_DI_rt_2.png",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794835936/IMG_20210415_125740_RT_%C5%BEr.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794835950/Cityscape_DI_rt.png",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794833390/baro_interjerui.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794833975/20241212_110205.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794835170/Prien%C5%B3_tagai_DI_rt.png",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794835168/Prien%C5%B3_tagai_DI_rt_1.png",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794833387/358148996_6274065776045931_2037582965310006144_n.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794833387/358152113_6274065926045916_1866531723779599100_n.jpg"
               ]
             },
             {
               "title": "Nematomi",
               "year": "grafika baldų linijai",
               "images": [
-                "https://picsum.photos/seed/vpvx9-0/800/1000",
-                "https://picsum.photos/seed/vpvx9-1/1000/700",
-                "https://picsum.photos/seed/vpvx9-2/800/800",
-                "https://picsum.photos/seed/vpvx9-3/700/1000",
-                "https://picsum.photos/seed/vpvx9-4/1200/800",
-                "https://picsum.photos/seed/vpvx9-5/800/1000"
-              ]
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794943571/Screenshot_from_2026-10-13_16-16-42.png",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1793352300/IMG_4527_%C5%BEr.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1793352860/skater_not_food.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1793352406/IMG_4540_%C5%BEr.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792852615/1.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792852602/32.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792852583/5.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1793353447/IMG_4598_%C5%BEr.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792852633/18.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1793353840/IMG_4620_%C5%BEr.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792852625/10.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792852573/9_65.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792852569/3.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792852631/34.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792852591/38.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792852585/37_7.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792852603/15.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792852601/12.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792852592/8.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792852606/6.png",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792852571/9.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794944364/nematomi-5_%C5%BEr.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794944315/nematomi-23_%C5%BEr.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794944120/IMG_4325_%C5%BEr.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794944066/IMG_4295_%C5%BEr.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794943701/IMG_7712.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794943387/1000119012-scaled.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792852590/IMG_4475-scaled.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792852579/31.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792852594/30.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1792852584/27.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794943378/1000119011.jpg"
+              ],
+              "text": ""
             },
             {
-              "title": "sienų tapyba",
-              "year": "",
+              "title": "Žalioji širdis",
+              "year": "meninė statyba nuo A iki Ž",
               "images": [
-                "https://picsum.photos/seed/vm1mn-0/800/1000",
-                "https://picsum.photos/seed/vm1mn-1/1000/700",
-                "https://picsum.photos/seed/vm1mn-2/800/800",
-                "https://picsum.photos/seed/vm1mn-3/700/1000",
-                "https://picsum.photos/seed/vm1mn-4/1200/800",
-                "https://picsum.photos/seed/vm1mn-5/800/1000"
-              ]
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794941687/IMG_9940_RT_2.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794942215/IMG_9908.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794942081/IMG_9913.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794944250/nematomi-11_%C5%BEr.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794941874/tur%C4%97klai1_nsp.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794942173/IMG_9792_RT.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794942335/IMG_9776.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794941969/IMG_9790.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794941901/virtuv%C4%970.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794942126/du%C5%A1as0.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794942035/IMG_20221216_184827.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794941938/IMG_9838.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794942002/IMG_9828.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794941849/tur%C4%97klai_NSP.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794942220/drambliukas_prie%C5%A1_ir_po_%C5%BDR.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794941884/prie%C5%A1_ir_po_ni%C5%A1a.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794941809/IMG_9662_RT.jpg",
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794942116/IMG_9805_RT.jpg"
+              ],
+              "text": ""
             }
           ]
         }
@@ -279,8 +327,8 @@ window.SITE_DEFAULTS = {
           "z": 3
         },
         "intro": {
-          "x": 34.61,
-          "y": 2.88,
+          "x": 3.02,
+          "y": 24.14,
           "w": 37.92,
           "z": 3
         }
@@ -968,7 +1016,7 @@ window.SITE_DEFAULTS = {
     {
       "slug": "kitasfylmas",
       "title": "Kitas fylmas",
-      "hidden": true,
+      "hidden": false,
       "intro": "Slaptas puslapis — pasiekiamas tik per nuorodą. Jo nėra meniu.",
       "blocks": [
         {
@@ -1029,35 +1077,108 @@ window.SITE_DEFAULTS = {
       "slug": "gertruda-ir-ramunas",
       "title": "Gertrūda ir Ramūnas",
       "hidden": true,
-      "intro": "Su pianinu skambančios eilės",
+      "intro": "",
       "blocks": [
         {
           "type": "stacks",
           "heading": "",
           "groups": [
             {
-              "title": "Nauja grupė",
+              "title": "",
               "year": "",
               "images": [
-                "https://picsum.photos/seed/3hfb5-0/800/1000"
-              ]
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794868730/IMG_8642_RT.jpg"
+              ],
+              "text": ""
             }
           ],
           "box": {
-            "x": 58,
-            "y": 30,
-            "w": 36,
+            "x": 37.21,
+            "y": 22.63,
+            "w": 13.58,
             "z": 2
           }
         },
         {
           "type": "video",
           "heading": "",
-          "url": "https://www.youtube.com/watch?v=DOlw_BUP3DU&pp=ygULZMSXa2luZ3VtYXM%3D",
+          "url": "https://youtube.com/shorts/XI7d-iFqrGk",
           "box": {
-            "x": 4,
-            "y": 42,
-            "w": 50,
+            "x": 29.67,
+            "y": 51.79,
+            "w": 30.67,
+            "z": 2
+          }
+        },
+        {
+          "type": "text",
+          "heading": "",
+          "body": "muzikinis duetas, jungiantis fortepijono muziką, autorinę poeziją ir repą. Gertrūdos atliekamos fortepijono kompozicijos lydi Ramūno atliekamas eiles\nJų kūryba artima dainuojamajai poezijai, kur muzika ir žodis papildo vienas kitą.\n\n",
+          "box": {
+            "x": 29.67,
+            "y": 71.4,
+            "w": 30.67,
+            "z": 2
+          }
+        },
+        {
+          "type": "text",
+          "heading": "",
+          "body": "Gertrūda Baltrušaitytė – septyniolikmetė pianistė, Kauno Juozo Naujalio muzikos gimnazijoje besimokanti chorinio dirigavimo ir besidominti terapiniu muzikos poveikiu. Respublikinių jaunųjų dirigentų konkursų pirmųjų vietų laureatė, dirigavusi valstybiniam chorui „Vilnius“, dalyvaujanti pianistų koncertuose ir festivaliuose.",
+          "box": {
+            "x": 17.1,
+            "y": 22.12,
+            "w": 16.59,
+            "z": 2
+          }
+        },
+        {
+          "type": "stacks",
+          "heading": "",
+          "box": {
+            "x": 3.02,
+            "y": 22.12,
+            "w": 13.58,
+            "z": 2
+          },
+          "groups": [
+            {
+              "title": "",
+              "year": "2026",
+              "images": [
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794868761/IMG-20261014-WA0000.jpg"
+              ],
+              "text": ""
+            }
+          ]
+        },
+        {
+          "type": "stacks",
+          "heading": "",
+          "box": {
+            "x": 72.91,
+            "y": 22.63,
+            "w": 13.58,
+            "z": 2
+          },
+          "groups": [
+            {
+              "title": "",
+              "year": "",
+              "images": [
+                "https://res.cloudinary.com/bxhejjp3/image/upload/v1794922682/Gamtoje.jpg"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "heading": "",
+          "body": "Ramūnas Vaicekauskas – rašytojas ir savo kūrybos atlikėjas. Jo poezija ir proza publikuota literatūriniuose žurnaluose „Baltas kambarys“, „Rankos“, „Merkio lieptai“. Ramūnas kuria dainas, dalyvauja poezijos skaitymuose, slemo renginiuose ir įvairiuose meniniuose projektuose, organizuoja poezijos vakarus bei kūrybines dirbtuves. 2025 m. išleido knygą „Eglė Žaislų Karalienė“.\n",
+          "box": {
+            "x": 54.81,
+            "y": 22.63,
+            "w": 16.59,
             "z": 2
           }
         }
@@ -1065,15 +1186,15 @@ window.SITE_DEFAULTS = {
       "layout": "free",
       "boxes": {
         "title": {
-          "x": 3,
-          "y": 2,
-          "w": 62,
+          "x": 3.02,
+          "y": 4.02,
+          "w": 96.98,
           "z": 3
         },
         "intro": {
-          "x": 5.23,
-          "y": 22.89,
-          "w": 40,
+          "x": 3.02,
+          "y": 11.57,
+          "w": 93.02,
           "z": 3
         }
       },
